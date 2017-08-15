@@ -49,6 +49,10 @@ class ExecuteUpdateContact
 					}
 
 					$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
+					
+					$savexml = new \Web\Logsrv();
+					$savexml->savelog( json_encode($lead),'executeUpdateContact-result');
+
 					if (!empty($lead['OwnerId'])) {
 						/***/
 						$vendedores = $app['orm.em']->getRepository('Entity\Resource')->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
