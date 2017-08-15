@@ -1,0 +1,23 @@
+#config/doctrine/Entity.Loguser.dcm.yml
+Entity\Loguser:
+    type: entity
+    table: loguser
+    fields:
+        idlog :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        userid:
+            type: text
+        partyid:
+            type: text
+        ownerid:
+            type: text
+        emailaddress:
+            type: text
+            nullable: TRUE
+        programaid:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }

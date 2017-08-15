@@ -1,0 +1,24 @@
+#config/doctrine/Entity.Sailor.dcm.yml
+Entity\Sailor:
+    type: entity
+    table: sailor
+    fields:
+        idsailor:
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        id :
+            type: bigint
+            nullable: TRUE
+        posicion:
+            type: integer
+        estado:
+            type: integer
+            nullable: TRUE
+        producto:
+            type: text
+        vendedor:
+            type: bigint
+            nullable: TRUE
+    lifecycleCallbacks: {  }

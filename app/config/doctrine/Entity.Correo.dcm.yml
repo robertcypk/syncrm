@@ -1,0 +1,19 @@
+#config/doctrine/Entity.Correo.dcm.yml
+Entity\Correo:
+    type: entity
+    table: correo
+    fields:
+        idcorreo:
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        co_codigo_programa:
+            type: text
+        co_estado:
+            type: text
+            nullable: TRUE
+        co_correo:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }

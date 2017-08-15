@@ -1,0 +1,25 @@
+#config/doctrine/Entity.Resource.dcm.yml
+Entity\Resource:
+    type: entity
+    table: resource
+    fields:
+        idrsc :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        Id:
+            type: bigint
+        ResourceId:
+            type: bigint
+        ResourceName:
+            type: text
+        CTRRuleta_c:
+            type: text
+        Username:
+            type: text
+        CTROrdenRuleta_c:
+            type: text
+        EmailAddress:
+            type: text
+    lifecycleCallbacks: {  }

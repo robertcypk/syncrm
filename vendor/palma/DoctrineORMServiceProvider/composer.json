@@ -1,0 +1,32 @@
+{
+    "name": "palma/doctrine-orm-service-provider",
+    "description": "A Silex DoctrineORM Service provider",
+    "keywords": ["doctrine", "orm", "silex"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Francisco Javier Palma Moreno",
+            "email": "palmasev@gmail.com"
+        }
+    ],
+    "minimun-stability" : "dev",
+    "require": {
+        "php": ">=5.3.3",
+	    "doctrine/orm": ">=2.2, ~2.5"
+    },
+    "require-dev": {
+        "silex/silex": "1.*",
+        "phpunit/phpunit": "~4.4.5"
+    },
+    "autoload": {
+        "psr-0": {
+            "Palma\\Silex\\Provider": "lib/",
+            "Palma\\Tests\\Silex\\Provider": "tests/"
+        }
+    },
+    "extra" : {
+        "branch-alias" : {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

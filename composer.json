@@ -1,0 +1,30 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+        "twig/twig": "^1.24",
+        "symfony/twig-bridge": "^3.0",
+        "symfony/form": "^3.0",
+        "symfony/validator": "^3.0",
+        "symfony/config": "^3.0",
+        "symfony/translation": "^3.0",
+        "symfony/security-csrf": "^3.0",
+        "palma/DoctrineORMServiceProvider" : "1.0.*-dev",
+        "silex/web-profiler": "~1.0",
+        "monolog/monolog": ">=1.0.0",
+        "doctrine/dbal": "2.*",
+        "symfony/doctrine-bridge": "2.*",
+        "dflydev/doctrine-orm-service-provider": "1.0.*@dev",
+        "symfony/yaml": "^3.0",
+        "symfony/security": "^3.0",
+        "mattkirwan/illuminate-database-silex-service-provider": "^0.4.0",
+        "amstaffix/pagination": "^1.1",
+        "symfony/polyfill-mbstring": "^1.1",
+        "symfony/process": "^3.0",
+        "sensio/generator-bundle": "^3.0",
+        "swiftmailer/swiftmailer": "^5.4"
+    },
+    "autoload": {
+        "psr-0": {"": "app/config/doctrine/"},
+        "psr-4": {"": "app/controllers/"}
+    }
+}

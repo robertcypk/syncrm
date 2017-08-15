@@ -1,0 +1,13 @@
+#config/doctrine/Entity.Academias.dcm.yml
+Entity\Academias:
+    type: entity
+    table: academias
+    fields:
+        id :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        nombre:
+            type: text
+    lifecycleCallbacks: {  }

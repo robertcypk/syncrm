@@ -1,0 +1,17 @@
+#config/doctrine/Entity.Inputmap.dcm.yml
+Entity\Inputmap:
+    type: entity
+    table: inputmap
+    fields:
+        idinput :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        input:
+            type: text
+        en:
+            type: text
+        es:
+            type: text
+    lifecycleCallbacks: {  }

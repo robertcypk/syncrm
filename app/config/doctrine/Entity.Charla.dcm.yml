@@ -1,0 +1,15 @@
+#config/doctrine/Entity.Charla.dcm.yml
+Entity\Charla:
+    type: entity
+    table: charla
+    fields:
+        idcharla :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        Id:
+            type: text
+        Fecha:
+            type: text
+    lifecycleCallbacks: {  }

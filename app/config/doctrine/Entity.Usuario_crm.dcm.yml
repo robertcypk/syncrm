@@ -1,0 +1,33 @@
+#config/doctrine/Entity.Usuario_crm.dcm.yml
+Entity\Usuario_crm:
+    type: entity
+    table: usuario_crm
+    fields:
+        id :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        tipo:
+            type: text
+        crm:
+            type: text
+        email:
+            type: text
+        try:
+            type: text
+        dupli:
+            type: text
+        edupli:
+            type: text
+        registro:
+            type: bigint
+        error:
+            type: text
+        cola:
+            type: text
+            nullable: TRUE
+        procesando:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }

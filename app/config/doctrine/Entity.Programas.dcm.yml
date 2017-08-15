@@ -1,0 +1,39 @@
+#config/doctrine/Entity.Programas.dcm.yml
+Entity\Programas:
+    type: entity
+    table: programas
+    fields:
+        idprograma :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        Id:
+            type: text
+        CTRNumProd_c:
+            type: text
+        CTRProgramaAcademicoCalculado_c:
+            type: text
+        CTREnviodeMailalumno_c:
+            type: text
+        CTRPrioridad_c:
+            type: text
+        CTRTipoDMA_c:
+            type: text
+        CTRValor_c:
+            type: text
+        CTR_TipoProgramaFinal_c:
+            type: text
+        CTRVirtualoPresencial_c:
+            type: text
+        CTRModalidad_c:
+            type: text
+        CTRSededeDictado_c:
+            type: text
+        CTRGrado_c:
+            type: text
+        CTREstructura_c:
+            type: text
+        CTRNombrePrograma_c:
+            type: text
+    lifecycleCallbacks: {  }

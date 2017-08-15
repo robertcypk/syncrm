@@ -1,0 +1,15 @@
+#config/doctrine/Entity.Paises.dcm.yml
+Entity\Paises:
+    type: entity
+    table: paises
+    fields:
+        id :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        codigo:
+            type: text
+        descripcion:
+            type: text
+    lifecycleCallbacks: {  }

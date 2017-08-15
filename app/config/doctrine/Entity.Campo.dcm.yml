@@ -1,0 +1,17 @@
+#config/doctrine/Entity.Campo.dcm.yml
+Entity\Campo:
+    type: entity
+    table: campo
+    fields:
+        id :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        identificador:
+            type: text
+        informacion:
+            type: text
+        id_section:
+            type: bigint
+    lifecycleCallbacks: {  }

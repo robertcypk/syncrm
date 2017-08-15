@@ -1,0 +1,15 @@
+#config/doctrine/Entity.Charlab.dcm.yml
+Entity\Charlab:
+    type: entity
+    table: charlab
+    fields:
+        idcharla :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        Id:
+            type: text
+        Fecha:
+            type: text
+    lifecycleCallbacks: {  }

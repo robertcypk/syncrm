@@ -1,0 +1,638 @@
+<table class="m_5151407861496243105m_6423733047676214325table-full" cellspacing="0" cellpadding="0" border="0" align="center" width="600">
+    <tbody>
+        <tr>
+            <td style="font-family:'Open Sans',Arial,sans-serif;font-size:33px;color:#414a51" class="m_5151407861496243105m_6423733047676214325editable">
+                <u></u><img><u></u>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-family:'Open Sans',Arial,sans-serif;font-size:33px;color:#414a51" class="m_5151407861496243105m_6423733047676214325editable">
+                <u></u><u></u>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        <tr>
+            <td align="left">
+                <table class="m_5151407861496243105m_6423733047676214325table-full" cellspacing="0" cellpadding="0" border="0" align="left" width="70">
+                    <tbody>
+                        <tr>
+                            <td align="center">
+                                <table cellspacing="0" cellpadding="0" border="0" align="center" width="70">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center">
+                                                <table cellspacing="0" cellpadding="0" border="0" align="center" width="5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="border-radius:10px" bgcolor="#900" width="5" height="5"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="15"></td>
+                                            <td align="center">
+                                                <table cellspacing="0" cellpadding="0" border="0" align="center" width="5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="border-radius:10px" bgcolor="#900" width="5" height="5"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="15"></td>
+                                            <td align="center">
+                                                <table cellspacing="0" cellpadding="0" border="0" align="center" width="5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="border-radius:10px" bgcolor="#900" width="5" height="5"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="15"></td>
+                                            <td align="center">
+                                                <table cellspacing="0" cellpadding="0" border="0" align="center" width="5">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="border-radius:10px" bgcolor="#900" width="5" height="5"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="15"></td>
+        </tr>
+        <tr>
+            <td style="font-family:'Open Sans',Arial,sans-serif;font-size:14px;color:#4a4c4d;line-height:20px">
+                <table class="m_5151407861496243105m_6423733047676214325table-full" cellspacing="0" cellpadding="0" border="0" width="600">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;line-height:28px;padding-left:15px;font-weight:bold;border-radius:5px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" align="center" height="40">
+                                <b>FICHA DE INSCRIPCIÓN PROCESO DE ADMISIÓN</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>1</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>PROGRAMA</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Codigo de programa:
+                                            </td>
+                                            <td>
+                                                {% if dataform.programa is defined %} {{ dataform.programa }} {% else %}
+                                                <!-- programa -->
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre de programa:</td>
+                                            <td>{% if dataform.nombrepro is defined %} {{ dataform.nombrepro }} {% else %}
+                                                <!-- nombre de programa -->
+                                                {% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sede: </td>
+                                            <td>
+                                                {% if dataform.location is defined %} {{ dataform.location }} {% else %}
+                                                <!-- location -->
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Plan: </td>
+                                            <td>
+                                                {% if dataform.plan is defined %} {{ dataform.plan }} {% else %}
+                                                <!-- plan-->
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>2</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>DATOS PERSONALES</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table>
+                                    <tbody>
+                                        <tr>
+
+                                            <td height="20">Sr./Mr./Srta.: </td>
+                                            <td>
+                                                {% if dataform.salutoryintroduction is defined %} {{dataform.salutoryintroduction}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Nombre: </td>
+                                            <td>{% if dataform.firstname is defined %} {{dataform.firstname}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Apellido Paterno: </td>
+                                            <td>{% if dataform.lastname is defined %} {{dataform.lastname}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Apellido Materno: </td>
+                                            <td>{% if dataform.persondeoctrapellidomaternoc is defined %} {{dataform.persondeoctrapellidomaternoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Tipo de documento: </td>
+                                            <td>{% if dataform.persondeoctrtipodedocumentoc is defined %} {{dataform.persondeoctrtipodedocumentoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Numero de documento: </td>
+                                            <td>{% if dataform.persondeoctrnrodedocumentoc is defined %} {{dataform.persondeoctrnrodedocumentoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Numero de telefono fijo: </td>
+                                            <td>{% if dataform.homephonenumber is defined %} {{dataform.homephonenumber}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Numero de telefono celular: </td>
+                                            <td>{% if dataform.mobilenumber is defined %} {{dataform.mobilenumber}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Primera dirección:</td>
+                                            <td>{% if dataform.addresselementattribute2 is defined %} {{dataform.addresselementattribute2}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Segunda dirección: </td>
+                                            <td>{% if dataform.addresselementattribute3 is defined %} {{dataform.addresselementattribute3}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td height="20">Tercera dirección:</td>
+                                            <td height="20">{% if dataform.addressline1 is defined %}{{dataform.addressline1}}{% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Paìs: </td>
+                                            <td>{% if dataform.country is defined %} {{ npais(dataform.country) }} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Ciudad: </td>
+                                            <td>{% if dataform.city is defined %} {{dataform.city}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Fecha de nacimiento: </td>
+                                            <td>{% if dataform.dateofbirth is defined %} {{dataform.dateofbirth}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Paìs de nacimiento: </td>
+                                            <td>{% if dataform.persondeoctrpaisdenacimientoc is defined %} {{dataform.persondeoctrpaisdenacimientoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Ciudad de nacimiento: </td>
+                                            <td>{% if dataform.persondeoctrciudaddenacimientoc is defined %} {{dataform.persondeoctrciudaddenacimientoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Nacionalidad: </td>
+                                            <td>
+                                                {% if dataform.persondeoctrnacionalidadc is defined %} {{dataform.persondeoctrnacionalidadc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Correo electronico: </td>
+                                            <td>{% if dataform.emailaddress is defined %} {{dataform.emailaddress}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Correo electronico PUCP: </td>
+                                            <td>{% if dataform.persondeoctrcorreopucpc is defined %} {{dataform.persondeoctrcorreopucpc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td height="20">Skype: </td>
+                                            <td>{% if dataform.persondeoctrcuentaskypec is defined %} {{dataform.persondeoctrcuentaskypec}} {% else %}
+                                                <!-- skype -->
+                                                {% endif %}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>3</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>FORMACIÓN ACADÉMICA - ESTUDIO SUPERIOR MÁS RECIENTE</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td height="20">Grado academico: </td>
+                                            <td>{% if dataform.persondeoctrgradoacademicoc is defined %} {{dataform.persondeoctrgradoacademicoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+											<td>{% if dataform.ctrgradoacademicoc is defined %} {{dataform.ctrgradoacademicoc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Instituto academico: </td>
+                                            <td>{% if dataform.ctrinstitucionacademicac is defined %} {{dataform.ctrinstitucionacademicac}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Universidad/Instituto: </td>
+                                            <td>{% if dataform.ctrotrasuniversidadesinstc is defined %} {{dataform.ctrotrasuniversidadesinstc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Especialidad: </td>
+                                            <td>{% if dataform.ctrespecialidadc is defined %} {{dataform.ctrespecialidadc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Mes de Graduación PUCP:</td>
+                                            <td>{% if dataform.ctranomesquefinalizoestsupc is defined %} {{dataform.ctranomesquefinalizoestsupc}} {% else %}
+                                                <!-- sin intro -->
+                                                {% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Nivel Academico: </td>
+                                            <td>{% if dataform.ctrnivelacademicoc is defined %} {{dataform.ctrnivelacademicoc}}{% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Ex-alumno: </td>
+                                            <td>{% if dataform.persondeoctrexalumnoc is defined %} {{dataform.persondeoctrexalumnoc}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Codigo PUCP: </td>
+                                            <td>{% if dataform.persondeoctrcodigopucpc is defined %} {{dataform.persondeoctrcodigopucpc}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        
+
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>4</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>FORMACIÓN IDIOMA INGLÉS</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                            <td height="20">Instituto de idiomas: </td>
+                                            <td>{% if dataform.ctrinstituciondeidiomasc is defined %} {{dataform.ctrinstituciondeidiomasc}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Nivel alcanzado: </td>
+                                            <td>{% if dataform.ctrnivelalcanzadoc is defined %} {{dataform.ctrnivelalcanzadoc}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Año-Mes Finalizado: </td>
+                                            <td> {% if dataform.ctraniomesfinalizoidiomac is defined %}{{dataform.ctraniomesfinalizoidiomac}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Ciudad: </td>
+                                            <td>
+                                                {% if dataform.ctrciudadc is defined %} {{dataform.ctrciudadc}} {% else %}
+                                                <!-- sin intro -->{% endif %}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:28px"><b></b></td>
+                            <td style="line-height:28px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>5</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>INFORMACION LABORAL</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td height="20">Compania: </td>
+                                            <td>{% if dataform.persondeoctrcompaniac is defined%} {{dataform.persondeoctrcompaniac}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Titulo laboral: </td>
+                                            <td>{% if dataform.jobtitle is defined %} {{dataform.jobtitle}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Telefono de oficina donde trabaja: </td>
+                                            <td>{% if dataform.workphonenumber is defined %} {{dataform.workphonenumber}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Anexo: </td>
+                                            <td> {% if dataform.workphoneextension is defined %} {{dataform.workphoneextension}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Numero de fax: </td>
+                                            <td>{% if dataform.faxnumber is defined %}{{dataform.faxnumber}}{% else %}
+                                                <!-- sin intro -->{% endif %}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Años de experiencia: </td>
+                                            <td>{% if dataform.persondeoctraniosdeexperienciac is defined %} {{dataform.persondeoctraniosdeexperienciac}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Salario medio anual: </td>
+                                            <td>{% if dataform.persondeoctrsalariomedioanualc is defined %} {{dataform.persondeoctrsalariomedioanualc}} {% else %}
+                                                <!-- sin intro -->{% endif %}
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Moneda: </td>
+                                            <td>{% if dataform.currencycode is defined %}{{dataform.currencycode}}{% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:28px"><b></b></td>
+                            <td style="line-height:28px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="40">
+                                <table cellspacing="0" cellpadding="0" border="0" align="left">
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-family:'Open sans',Arial,sans-serif;color:#fff;font-size:14px;padding-left:5px;padding-right:5px;font-weight:bold;border-radius:10px" class="m_5151407861496243105m_6423733047676214325editable" bgcolor="#036" width="10" height="10">
+                                                <b>6</b>
+                                            </td>
+                                            <td style="padding-left:5px"><b>OTROS</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td height="20">Observacion: </td>
+                                            <td> {% if dataform.persondeoctrobservacionc is defined %}{{dataform.persondeoctrobservacionc}}{% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td height="20">Procedencia: </td>
+                                            <td>{% if dataform.persondeoctrprocedenciac is defined %} {{dataform.persondeoctrprocedenciac}} {% else %}
+                                                <!-- sin intro -->{% endif %}</td>
+                                        </tr>
+
+                                        <tr>{% if dataform.persondeoctrautorizodatospersonfinesmc is defined %}
+            <td height="20">Autorizo Datos Personalizados Fines Mc: {% if dataform.persondeoctrautorizodatospersonfinesmc == true %} Si {% else %} No {% endif %}</td>{% else %}
+            <!-- sin intro -->{% endif %}</tr>
+
+        <tr>{% if dataform.persondeoctrautorizoenvinfprogacac is defined %}
+            <td height="20">Autorizo envio de informaciòn academica: {% if dataform.persondeoctrautorizoenvinfprogacac == true %} Si {% else %} No {% endif %}</td>{% else %}
+            <!-- sin intro -->{% endif %}</tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="line-height:28px"><b></b></td>
+                            <td style="line-height:28px"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="20"></td>
+        </tr>
+        <tr>
+            <td class="m_5151407861496243105m_6423733047676214325editable" style="font-family:'Open Sans',Arial,sans-serif;font-size:11px;color:#fff;text-align:center;font-weight:bold" bgcolor="#900" height="30">
+                © Copyright 2016 - All right reserved - <a href="http://centrum.pucp.edu.pe/" style="color:#fff;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://centrum.pucp.edu.pe/&amp;source=gmail&amp;ust=1495128514156000&amp;usg=AFQjCNHZoWGxpxLY4VU5GV6AyfylEnTEjA">
+            Página principal</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

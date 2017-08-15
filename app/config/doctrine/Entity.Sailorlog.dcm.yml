@@ -1,0 +1,20 @@
+#config/doctrine/Entity.Sailorlog.dcm.yml
+Entity\Sailorlog:
+    type: entity
+    table: sailorlog
+    fields:
+        idsailorlog:
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        fechareg:
+            type: text
+            nullable: TRUE
+        producto:
+            type: text
+            nullable: TRUE
+        vendedor:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }

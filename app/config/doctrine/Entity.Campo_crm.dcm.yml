@@ -1,0 +1,26 @@
+#config/doctrine/Entity.Campo_crm.dcm.yml
+Entity\Campo_crm:
+    type: entity
+    table: campo_crm
+    fields:
+        id :
+            type: bigint
+            id: true
+            generator:
+                strategy: AUTO
+        user_id:
+            type: text
+        campo:
+            type: text
+        valor:
+            type: text
+        uid:
+            type: text
+            nullable: TRUE
+        pag:
+            type: text
+            nullable: TRUE
+        respaldo:
+            type: text
+            nullable: TRUE
+    lifecycleCallbacks: {  }
