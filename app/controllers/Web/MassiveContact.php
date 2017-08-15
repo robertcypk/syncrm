@@ -1,19 +1,30 @@
 <?php
 namespace Web;
+
 use Web\Soap;
 use Web\Emailuser;
 use Silex\Application;
-class MassiveContact{
-	var $wsContacto = 'https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL';
-	/* Update Contact Masive */
+
+class MassiveContact{	
+
+var $wsContacto = 'https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL';
+
+/* 
+* Update Contact Masive 
+*/
+
 	public function updateContactMassive($contacto, $dataForm, $try){
 		$soap = new Soap();
 		$client = $soap->getClient($this->wsContacto);
 		$soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/updateContact";
 		$request = $this->updateContactRequest($contacto, $dataForm);
 		
+		$savexml = new \Web\Logsrv();
+		$savexml->savelog($request,'updateContactMassive');
+
 		$response = $client->send($request, $soapaction, '');
-		$response['xml'] = base64_encode($request);
+		
+
 		if(!empty($response['result'])){
 			
 			return $response;

@@ -161,13 +161,12 @@ class ExecuteUpdateContact{
 						$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
 				
 						if(!empty($lead['OwnerId'])){
-						$vendedores = $app['orm.em']->getRepository('Entity\Resource')
-													->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
+						$vendedores = $app['orm.em']->getRepository('Entity\Resource')->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
 							if($lead['OwnerId'] != $loguser->getOwnerid() ){
 								
 								$vend = null; //new \stdClass(); //vuelve a inicializar
 								foreach($vendedores as $vendedor){ //recorre el registro de vendedores otra vez
-									if($lead['OwnerId'] == $vendedor->getResourceId() ){ // si el ownerid de lead es igual al resourceid de la tabla resource
+									if($lead['OwnerId'] == $vendedor->getResourceId() ){
 										$vend = $vendedor;
 									}
 								}
@@ -180,19 +179,13 @@ class ExecuteUpdateContact{
 											->set('u.try', $qb->expr()->literal( $try ) )->set('u.error', $qb->expr()->literal( $error ) )
 											->where('u.id = ?1')->setParameter(1, $loguser->getUserid())->getQuery();
 									$p = $q->execute();
-									
-										$logger = new Emailuser();
-										$lg = '<br>Nompre de programa:'.$dataForm->nombrepro.'<br>';
-										$lg .= '<br>Programa:'.$dataForm->programa.'<br>';
-										$lg .= '<br>DNI:'.$dataForm->persondeoctrnrodedocumentoc.'<br>';
-										$log = $logger->logger('executeUpdateContact-error',$error.$lg,$app);
 										
 									return 0;
 								}
 							}
 								
 								// existen vendedores de programa en recursos?
-								if(!empty($vendedores)){
+							if(!empty($vendedores)){
 									$count_2 = 1;
 									$vend_2 = null;
 									// existe vendedor de programa?
@@ -260,7 +253,6 @@ class ExecuteUpdateContact{
 										}
 										$email = new \Web\EmailCrm();
 										return $email->syncEmailUserCRM($app,$vend_2->getEmailaddress(),$loguser->getUserid());
-										//
 									}
 								}else{
 									$error = 'No existen vendores registrados para el programa';
