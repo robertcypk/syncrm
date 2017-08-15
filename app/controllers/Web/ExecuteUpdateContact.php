@@ -21,25 +21,21 @@ class ExecuteUpdateContact
 	{
 		$idlog = $request->get('idlog');
 		$loguser = $app['orm.em']->getRepository('Entity\Loguser')->findOneBy( array('idlog'=>$idlog ) );
-		
 		if( !empty($loguser) )
 		{
-			/* si existe usuario para actualizar */
-
-					$campos = $app['orm.em']->getRepository('Entity\Campo_crm')->findBy( array('user_id'=>$loguser->getUserid() ) );
+			$campos = $app['orm.em']->getRepository('Entity\Campo_crm')->findBy( array('user_id'=>$loguser->getUserid() ) );
 					if(count($campos)==0)
 					{
 						return 'No existen campos del usuario';
 					}
-					
 					//dataForm
 					$dataForm = new \stdClass();
-					foreach($campos as $campo){
+					foreach($campos as $campo)
+					{
 						$dataForm->{$campo->getCampo()} = $campo->getValor();
 					}
 					$dataForm->atendido = $loguser->getOwnerid();
 					$dataForm->ownerpartyid = $dataForm->atendido;
-					
 					//usuario_crm
 					$usuario = $app['orm.em']->getConnection()->prepare("SELECT * FROM usuario_crm WHERE tipo=1 AND crm=1 OR crm=0  AND try!=4 AND id='".$loguser->getUserid()."'");
 					$usuario->execute();
@@ -48,26 +44,21 @@ class ExecuteUpdateContact
 					$contacto = new \Web\Checkcontact();
 					$contacto = $contacto->checkContactf($dataForm,1, $usuario['id'],$app);
 					
-					if( empty($contacto) ){
+					if(empty($contacto)) {
 						return 'No hay usuario para actualizae';						
 					}
 
 					$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
-					
-					if(!empty($lead['OwnerId']))
-					{
-						
-						$vendedores = $app['orm.em']->getRepository('Entity\Resource')
-													->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
+					if (!empty($lead['OwnerId'])) {
+						/***/
+						$vendedores = $app['orm.em']->getRepository('Entity\Resource')->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
 						if($lead['OwnerId'] != $loguser->getOwnerid() ){
-							
 							$vend = null; //new \stdClass(); //vuelve a inicializar
 							foreach($vendedores as $vendedor){ //recorre el registro de vendedores otra vez
 								if($lead['OwnerId'] == $vendedor->getResourceId() ){ // si el ownerid de lead es igual al resourceid de la tabla resource
 									$vend = $vendedor;
 								}
 							}
-							
 							if(empty($vend)){ //no existen vendedor?
 								$error = 'Se creo el contacto y el lead pero no se va poder enviar correo xq la vendedora no esta en los usuarios';
 								$try = $usuario['try']+1;
@@ -78,16 +69,13 @@ class ExecuteUpdateContact
 								return 0;
 							}
 						}
-						
-							
-							// existen vendedores de programa en recursos?
-							if(!empty($vendedores)){
-								
+						// existen vendedores de programa en recursos?
+						if(!empty($vendedores)){
+								/* existe */
 								$count_2 = 1;
 								$vend_2 = null;
 								// existe vendedor de programa?
 								if( empty($vend) ){
-									
 									//tabla resource
 									foreach($vendedores as $vendedor){
 										//$vend['ownerid']
@@ -95,7 +83,6 @@ class ExecuteUpdateContact
 											$vend_2 = $vendedor;
 										}
 									}
-									
 								}else{
 									$vend_2 = $vend;
 								}
@@ -116,8 +103,7 @@ class ExecuteUpdateContact
 									
 									//actualizar estado CRM
 									$qb = $app['orm.em']->createQueryBuilder();
-									$q = $qb->update('Entity\Usuario_crm', 'u')->set('u.crm', $qb->expr()->literal( '1' ) )->where('u.id = ?1')
-												->setParameter(1, $loguser->getUserid())->getQuery();
+									$q = $qb->update('Entity\Usuario_crm', 'u')->set('u.crm', $qb->expr()->literal( '1' ) )->where('u.id = ?1')->setParameter(1, $loguser->getUserid())->getQuery();
 									$p = $q->execute();
 									$app['orm.em']->flush();
 									
@@ -138,38 +124,32 @@ class ExecuteUpdateContact
 															$qb->expr()->eq('c.campo', '?1'),
 															$qb->expr()->eq('c.user_id ',' ?2')
 												))
-												->setParameter(1,'email_final')
-												->setParameter(2, $loguser->getUserid())
-												->getQuery();
+												->setParameter(1,'email_final')->setParameter(2, $loguser->getUserid())->getQuery();
 										$p = $q->execute();
 										$app['orm.em']->flush();
 									}
 									$email = new \Web\EmailCrm();
 									return $email->syncEmailUserCRM($app,$vend_2->getEmailaddress(),$loguser->getUserid());
-									//
 								}
-							}else{
+								/* existe */
+						}else{
 								$error = 'No existen vendores registrados para el programa';
 								$try = $usuario['try']+1;
 								$qb = $app['orm.em']->createQueryBuilder();
 								$q = $qb->update('Entity\Usuario_crm', 'u')
 										->set('u.try', $qb->expr()->literal( $try ) )->set('u.error', $qb->expr()->literal( $error ) )
-										->where('u.id = ?1')->setParameter(1, $loguser->getUserid())
-										->getQuery();
+										->where('u.id = ?1')->setParameter(1, $loguser->getUserid())->getQuery();
 								$p = $q->execute();
 								return $error;
-							}
-
-							
-						
+						}
+						/***/
 					}else{
-						
+						/***/
 						$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
 				
-						if(!empty($lead['OwnerId'])){
+						if(!empty($lead['OwnerId'])) {
 						$vendedores = $app['orm.em']->getRepository('Entity\Resource')->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
 							if($lead['OwnerId'] != $loguser->getOwnerid() ){
-								
 								$vend = null; //new \stdClass(); //vuelve a inicializar
 								foreach($vendedores as $vendedor){ //recorre el registro de vendedores otra vez
 									if($lead['OwnerId'] == $vendedor->getResourceId() ){
@@ -188,6 +168,7 @@ class ExecuteUpdateContact
 										
 									return 0;
 								}
+
 							}
 								
 								// existen vendedores de programa en recursos?
@@ -198,7 +179,6 @@ class ExecuteUpdateContact
 									if( empty($vend) ){
 										//tabla resource
 										foreach($vendedores as $vendedor){
-											//$vend['ownerid']
 											if( $lead['OwnerId'] == $vendedor->getResourceId() ){
 												$vend_2 = $vendedor;
 											}
@@ -260,7 +240,7 @@ class ExecuteUpdateContact
 										$email = new \Web\EmailCrm();
 										return $email->syncEmailUserCRM($app,$vend_2->getEmailaddress(),$loguser->getUserid());
 									}
-								}else{
+							}else{
 									$error = 'No existen vendores registrados para el programa';
 									$try = $usuario['try']+1;
 									$qb = $app['orm.em']->createQueryBuilder();
@@ -269,10 +249,20 @@ class ExecuteUpdateContact
 											->where('u.id = ?1')->setParameter(1, $loguser->getUserid())->getQuery();
 									$p = $q->execute();
 									return $error;
-								}
+							}
 						}
-/*
-						else{
+						/***/
+					}
+		
+					/*
+					if(!empty($lead['OwnerId']))
+					{
+					}
+					else
+					{
+						
+						
+					}else{
 							$error = 'No existen leads registrados';
 									$try = $usuario['try']+1;
 									$qb = $app['orm.em']->createQueryBuilder();
@@ -284,8 +274,6 @@ class ExecuteUpdateContact
 								return $error;
 						}
 					*/
-					}
-			
 			/* */
 		}else{
 			return 'No existen usuarios para actualizar leads';
