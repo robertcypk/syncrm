@@ -1,5 +1,6 @@
 <?php
 namespace Web;
+
 use Web\MergeContact;
 use Web\MassiveContact;
 use Web\Buscarleadfind;
@@ -12,18 +13,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Web\Emailuser;
 
-class ExecuteUpdateContact{
+class ExecuteUpdateContact
+{
 	var $wsPerson = 'https://cang-test.crm.us2.oraclecloud.com:443/foundationParties/PersonService?WSDL';
-	public function init(Request $request,Application $app){
+
+	public function init(Request $request,Application $app)
+	{
 		$idlog = $request->get('idlog');
 		$loguser = $app['orm.em']->getRepository('Entity\Loguser')->findOneBy( array('idlog'=>$idlog ) );
 		
-		if( !empty($loguser) ){
+		if( !empty($loguser) )
+		{
 			/* si existe usuario para actualizar */
 
-					
 					$campos = $app['orm.em']->getRepository('Entity\Campo_crm')->findBy( array('user_id'=>$loguser->getUserid() ) );
-					if(count($campos)==0){
+					if(count($campos)==0)
+					{
 						return 'No existen campos del usuario';
 					}
 					
@@ -49,7 +54,8 @@ class ExecuteUpdateContact{
 
 					$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
 					
-					if(!empty($lead['OwnerId'])){
+					if(!empty($lead['OwnerId']))
+					{
 						
 						$vendedores = $app['orm.em']->getRepository('Entity\Resource')
 													->findBy(array('Id'=>$loguser->getProgramaid()),array('CTROrdenRuleta_c'=> 'ASC'));
@@ -264,7 +270,9 @@ class ExecuteUpdateContact{
 									$p = $q->execute();
 									return $error;
 								}
-						}else{
+						}
+/*
+						else{
 							$error = 'No existen leads registrados';
 									$try = $usuario['try']+1;
 									$qb = $app['orm.em']->createQueryBuilder();
@@ -275,7 +283,7 @@ class ExecuteUpdateContact{
 									$p = $q->execute();
 								return $error;
 						}
-					
+					*/
 					}
 			
 			/* */
