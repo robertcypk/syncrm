@@ -94,6 +94,7 @@ class MassiveContact
 
         }
 		//
+		/*
 		if(isset($dataForm->ctrgradoacademicoc) || isset($dataForm->ctrinstitucionacademicac)
 			|| isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
 			|| isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
@@ -108,7 +109,7 @@ class MassiveContact
 								'.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
 								'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
 							</ns1:PersonDEO_InformacionAcademicaCollection_c>';
-		}
+		}*/
 		
          $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
                             '.(isset($dataForm->persondeoctrpaisdenacimientoc)?'<ns1:PersonDEO_CTRPaisdenacimiento_c>'.$dataForm->persondeoctrpaisdenacimientoc.'</ns1:PersonDEO_CTRPaisdenacimiento_c>':'').'
