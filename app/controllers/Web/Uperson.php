@@ -48,6 +48,9 @@ class Uperson{
 		}else{
 			$arraEmail[] = $emails['EmailAddress'];
 		}
+
+		$savexml = new \Web\Logsrv();
+		$savexml->savelog($arraEmail,'Person-updatePersonRequest');
 		
 		foreach($arraEmail as $email){
 				/*if(!empty($user->emailaddress)){
