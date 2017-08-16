@@ -27,8 +27,8 @@ class Index implements ControllerProviderInterface{
 		return $factory;
   	}
 	public function index(Request $request,Application $app){
-		$x = $this->procedenciatxt(1,$app);
-		echo "{$x}";
+		//$x = $this->procedenciatxt(1,$app);
+		//echo "{$x}";
 		return '';
 	}
 	public function procedenciatxt($txt='',$app)
