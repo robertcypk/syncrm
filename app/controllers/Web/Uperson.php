@@ -92,7 +92,7 @@ class Uperson{
 		}*/
 		
 		$request_xml_2 = '';
-		if($email==true){
+		if($email2==true){
 			$request_xml_2 ='<per:Email>
 					<con:OwnerTableName>HZ_PARTIES</con:OwnerTableName>
 					<con:OwnerTableId>'.$contacto['PartyId'].'</con:OwnerTableId>
