@@ -53,7 +53,7 @@ class Registro{
 								$campo->setValor( mb_convert_encoding($d,'UTF-8','auto') );
 								break;
 						}
-						$campo->setValor( strtoupper( mb_convert_encoding($d,'UTF-8','auto') ) ); //iconv("UTF-8", "ISO-8859-1", $d));
+						//$campo->setValor( strtoupper( mb_convert_encoding($d,'UTF-8','auto') ) ); //iconv("UTF-8", "ISO-8859-1", $d));
 					}
 					
 					$campo->setUid('preestablecido');
