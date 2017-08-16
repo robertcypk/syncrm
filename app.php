@@ -14,6 +14,11 @@ $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
 		return Web\Paises::listapaises($cod,$app);
         
     }));
+
+    $twig->addFunction(new \Twig_SimpleFunction('procedenciatxt',function($txt='') use ($app){
+        return Web\Index::procedenciatxt($txt,$app);
+        
+    }));
     return $twig;
 }));
 

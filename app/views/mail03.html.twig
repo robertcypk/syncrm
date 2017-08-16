@@ -600,11 +600,14 @@
                                                 <!-- sin intro -->{% endif %}</td>
                                         </tr>
 
-                                        <tr>
+                                        {% if dataform.persondeoctrprocedenciac is defined %} 
+                                         <tr>
                                             <td height="20">Procedencia: </td>
-                                            <td>{% if dataform.persondeoctrprocedenciac is defined %} {{dataform.persondeoctrprocedenciac}} {% else %}
-                                                <!-- sin intro -->{% endif %}</td>
+                                            <td>{{procedenciatxt(dataform.persondeoctrprocedenciac)}}</td>
                                         </tr>
+                                        {% else %}
+                                            <!-- sin intro -->
+                                        {% endif %}
 
                                         <tr>{% if dataform.persondeoctrautorizodatospersonfinesmc is defined %}
             <td height="20">Autorizo Datos Personalizados Fines Mc: {% if dataform.persondeoctrautorizodatospersonfinesmc == true %} Si {% else %} No {% endif %}</td>{% else %}

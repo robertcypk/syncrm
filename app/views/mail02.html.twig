@@ -509,7 +509,7 @@
             <!-- sin intro -->{% endif %}</tr>
 
         <tr>{% if dataform.persondeoctrprocedenciac is defined %}
-            <td height="20">Procedencia: {{dataform.persondeoctrprocedenciac}}</td>{% else %}
+            <td height="20">Procedencia: {{ procedenciatxt(dataform.persondeoctrprocedenciac) }}</td>{% else %}
             <!-- sin intro -->{% endif %}</tr>
 
 		<tr>{% if dataform.persondeoctrautorizodatospersonfinesmc is defined %}
