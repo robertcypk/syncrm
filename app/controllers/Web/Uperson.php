@@ -119,7 +119,7 @@ class Uperson{
 
 		//'.$request_xml_1.'
 
-		if($email2 || $email3){
+		if($request_xml_2 || $request_xml_3){
 			$request_xml ='<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 					xmlns:typ="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/types/"
 					xmlns:per="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/"
