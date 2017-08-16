@@ -13,6 +13,11 @@ class MergeContact{
 		if(!empty($response['faultstring'])){
 			return $response;
 		}
+        $savexml = new \Web\Logsrv();
+        $savexml->savelog($request,'MergeContact');
+
+        $savexml = new \Web\Logsrv();
+        $savexml->savelog( json_encode($response) ,'MergeContact-response');
 		
 		if($request===true)
 			return true;

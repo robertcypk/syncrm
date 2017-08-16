@@ -100,6 +100,7 @@ class MassiveContact
 			 $request_xml .= '
 			 				<ns1:PersonDEO_InformacionAcademicaCollection_c>
 			 					'.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
+			 					'.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
 			 					'.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
 			 					'.(isset($dataForm->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$dataForm->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
 			 					'.(isset($dataForm->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$dataForm->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
