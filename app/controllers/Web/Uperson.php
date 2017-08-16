@@ -55,7 +55,8 @@ class Uperson{
 					$email1 = false;
 				}*/
 				if(!empty($user->emailaddress2)){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and (strtolower($user->emailaddress2) == strtolower($email["EmailAddress"])) ){
+					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
+						(strtolower($user->emailaddress2) == strtolower($email["EmailAddress"])) ){
 						$email2 = false;
 					}
 				}else{

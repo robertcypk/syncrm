@@ -13,9 +13,11 @@ class Person{
 		$request = $this->getPersonRequest($userInserted);
 		$response = $client->send($request, $soapaction, '');
 		
-		if(!empty($response['faultstring'])){
-				return $response;
-		}
+		$savexml = new \Web\Logsrv();
+		$savexml->savelog($request,'Person-request');
+
+		$savexml2 = new \Web\Logsrv();
+		$savexml2->savelog( json_encode($response),'Person-response');
 		
 		if(isset($response['result'])){
 			return $response['result']['Value'];
