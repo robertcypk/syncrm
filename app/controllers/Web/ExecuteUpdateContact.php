@@ -304,7 +304,7 @@ class ExecuteUpdateContact
 			return $error;
 		}
 		
-		if($dataForm->origen==1){ // admision
+		//if($dataForm->origen==1){ // admision
 			$mergecontacto = new MergeContact();
             $merged = $mergecontacto->mergeContacto($contacto,$dataForm, 1);
             if(!isset($merged)){
@@ -320,7 +320,7 @@ class ExecuteUpdateContact
                 $p = $q->execute();    
 				return $error;
             }
-        }
+       // }
 		
 		
 		$updateperson = new Uperson();
