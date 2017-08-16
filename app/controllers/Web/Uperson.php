@@ -63,7 +63,7 @@ class Uperson{
 				}*/
 				if(!empty($user->emailaddress2)){
 					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						(strtolower($user->emailaddress2) == strtolower($email["EmailAddress"])) ){
+						$user->emailaddress2) == $email["EmailAddress"] ){
 						$email2 = false;
 					}
 				}else{
@@ -71,7 +71,7 @@ class Uperson{
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
 					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						(strtolower($user->persondeoctrcorreopucpc) == strtolower($email["EmailAddress"])) ){
+						$user->persondeoctrcorreopucpc == $email["EmailAddress"] ){
 						$email3 = false;
 					}
 				}else{
