@@ -14,7 +14,7 @@ class Person{
 		$response = $client->send($request, $soapaction, '');
 		
 		$savexml = new \Web\Logsrv();
-		$savexml->savelog($request,'Person-request');
+		//$savexml->savelog($request,'Person-request');
 		$savexml->savelog( json_encode($response),'Person-response');
 		
 		if(isset($response['result'])){
