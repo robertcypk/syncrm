@@ -23,8 +23,8 @@ class Uperson{
 					$request = $this->updatePersonRequest($emails['Email'], $dataForm, $contacto);
 					
 					$savexml = new \Web\Logsrv();
-					$savexml->savelog($request,'Uperson');
-					//$savexml->savelog( implode(':',$emails['Email']),'Person-response');
+					//$savexml->savelog($request,'Uperson');
+					$savexml->savelog( $emails['Email'],'Person-response');
 					
 					if(!empty($request)){
 						$response['response'] = $client->send($request, $soapaction, '');

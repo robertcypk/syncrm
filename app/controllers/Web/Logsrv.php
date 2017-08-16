@@ -10,7 +10,13 @@ class Logsrv
 	public function savelog($arg,$servicio)
 	{
 		$file = 'log-'.$servicio.'-'.date('d-m-Y').'.txt';
-		$message = $arg;
+		if( is_array($arg) ){
+			$message = json_encode($arg);
+		}else{
+			$message = $arg;
+		}
+		
+
 		$win = "sync\app\controllers\Web";
 		$unix = "sync/app/controllers/Web";
 		$ruta = str_replace($win,'',__DIR__).'uploads/';
