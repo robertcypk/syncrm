@@ -7,14 +7,15 @@ namespace Web;
 class Logsrv
 {
 
-public function savelog($arg,$servicio)
-{
-	$file = 'log-'.$servicio.'-'.date('d-m-Y').'.txt';
-	$message = $arg;
-	$win = "sync\app\controllers\Web";
-	$unix = "sync/app/controllers/Web";
-	$ruta = str_replace($win,'',__DIR__).'uploads/';
-	file_put_contents($ruta.$file, PHP_EOL . $message, FILE_APPEND);
-}
+	public function savelog($arg,$servicio)
+	{
+		$file = 'log-'.$servicio.'-'.date('d-m-Y').'.txt';
+		$message = $arg;
+		$win = "sync\app\controllers\Web";
+		$unix = "sync/app/controllers/Web";
+		$ruta = str_replace($win,'',__DIR__).'uploads/';
+		file_put_contents($ruta.$file, PHP_EOL . $message, FILE_APPEND);
+		return '';
+	}
 }
 ?>
