@@ -24,6 +24,7 @@ class Uperson{
 					
 					$savexml = new \Web\Logsrv();
 					$savexml->savelog($request,'Uperson');
+					$savexml->savelog( json_encode($emails['Email']),'Person-response');
 					
 					if(!empty($request)){
 						$response['response'] = $client->send($request, $soapaction, '');
@@ -42,11 +43,13 @@ class Uperson{
 		$email3 = true;
         $arraEmail = array();
 		//EmailAddress
-        if( empty($emails['emails']) ){
-        	return ''; //$arraEmail[] = $emails['emails'];
+        if( empty($emails['EmailAddress']) ){
+        	$arraEmail[] = $emails;
+		}else{
+			$arraEmail[] = $emails['EmailAddress'];
 		}
 		
-		foreach($emails['emails'] as $email){
+		foreach($arraEmail as $email){
 				/*if(!empty($user->emailaddress)){
 					if( $email['Status']=='A' and $email['PrimaryFlag']==true and (strtolower($user->emailaddress) == strtolower($email["EmailAddress"])) ){
 						$email1 = false;
