@@ -51,7 +51,7 @@ class ExecuteUpdateContact
 					$lead = $this->executeUpdateContact($contacto, $dataForm, $usuario,$app);
 					
 					$savexml = new \Web\Logsrv();
-					$savexml->savelog( json_encode($lead),'executeUpdateContact-result');
+					$savexml->savelog( json_encode($lead['faultstring']),'executeUpdateContact-result');
 
 					if (!empty($lead['OwnerId'])) {
 						/***/
