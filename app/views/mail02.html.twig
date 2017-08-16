@@ -392,14 +392,14 @@
             <!-- sin intro -->
             {% endif %}
         </tr>
-
+        
+        {% if dataform.ctrinstitucionacademicac is defined %}
         <tr>
-            {% if dataform.ctrinstitucionacademicac is defined %}
             <td height="20">Instituto academico: {{dataform.ctrinstitucionacademicac}}</td>
-            {% else %}
-            <!-- sin intro -->
-            {% endif %}
         </tr>
+        {% else %}
+            <!-- sin intro -->
+        {% endif %}
 
         <tr>
             {% if dataform.ctrotrasuniversidadesinstc is defined %}

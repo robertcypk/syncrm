@@ -8,7 +8,7 @@ use Silex\Application;
 class MassiveContact
 {
 
-public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
+ private $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
 /* 
 * Update Contact Masive 
 */
@@ -19,6 +19,7 @@ public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSales
 		$soap = new Soap();
 		$client = $soap->getClient($this->wsContacto);
 		$soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/updateContact";
+		
 		$request = $this->updateContactRequest($contacto, $dataForm);
 		
 		$savexml = new \Web\Logsrv();
@@ -97,16 +98,15 @@ public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSales
 			|| isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
 			|| isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
 			 $request_xml .= '
-			 				<ns1:InformacionAcademicaCollection_c>
+			 				<ns1:PersonDEO_InformacionAcademicaCollection_c>
 			 					'.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
-			 					'.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
 			 					'.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
 			 					'.(isset($dataForm->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$dataForm->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
 			 					'.(isset($dataForm->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$dataForm->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
 			 					'.(isset($dataForm->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$dataForm->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
 								'.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
 								'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
-							</ns1:InformacionAcademicaCollection_c>';
+							</ns1:PersonDEO_InformacionAcademicaCollection_c>';
 		}
 		
          $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
