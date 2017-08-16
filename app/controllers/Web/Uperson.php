@@ -24,7 +24,7 @@ class Uperson{
 					
 					$savexml = new \Web\Logsrv();
 					$savexml->savelog($request,'Uperson');
-					$savexml->savelog( implode(':',$emails['Email']),'Person-response');
+					//$savexml->savelog( implode(':',$emails['Email']),'Person-response');
 					
 					if(!empty($request)){
 						$response['response'] = $client->send($request, $soapaction, '');
