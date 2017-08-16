@@ -51,6 +51,7 @@ class Uperson{
 
 		$savexml = new \Web\Logsrv();
 		$savexml->savelog($arraEmail,'Person-updatePersonRequest');
+		$savexml->savelog($user,'Person-user');
 		
 		foreach($arraEmail as $email){
 				/*if(!empty($user->emailaddress)){
