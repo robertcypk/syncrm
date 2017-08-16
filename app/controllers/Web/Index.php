@@ -67,7 +67,7 @@ class Index implements ControllerProviderInterface{
 				'nombre' => 'Redes Sociales'
 			],
 		];
-		var $resultado = 'Sin procedencia';
+		$resultado = 'Sin procedencia';
 		foreach ($array as $key => $value) {
 			if ($value['codigo'] == $txt) {
 				$resultado = $value['nombre'];
