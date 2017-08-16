@@ -63,7 +63,7 @@ class Uperson{
 				}*/
 				if(!empty($user->emailaddress2)){
 					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						$user->emailaddress2) == $email["EmailAddress"] ){
+						$user->emailaddress2 == $email["EmailAddress"] ){
 						$email2 = false;
 					}
 				}else{
