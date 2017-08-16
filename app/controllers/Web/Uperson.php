@@ -49,8 +49,8 @@ class Uperson{
 			$arraEmail[] = $emails['EmailAddress'];
 		}
 
-		//$savexml = new \Web\Logsrv();
-		//$savexml->savelog($arraEmail,'Person-updatePersonRequest');
+		$savexml = new \Web\Logsrv();
+		$savexml->savelog($arraEmail,'Person-updatePersonRequest');
 
 		
 		foreach($arraEmail as $email){
@@ -70,7 +70,8 @@ class Uperson{
 					$email2 = false;
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and (strtolower($user->persondeoctrcorreopucpc) == strtolower($email["EmailAddress"])) ){
+					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
+						(strtolower($user->persondeoctrcorreopucpc) == strtolower($email["EmailAddress"])) ){
 						$email3 = false;
 					}
 				}else{
