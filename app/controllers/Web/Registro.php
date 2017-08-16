@@ -39,6 +39,20 @@ class Registro{
 					if( $k == 'ctrgradoacademicoc' ){
 						$campo->setValor( mb_convert_encoding($d,'UTF-8','auto') ); //iconv("UTF-8", "ISO-8859-1", $d));
 					}else{
+						switch ( $k ) {
+							case 'firstname':
+								$campo->setValor(strtoupper(mb_convert_encoding($d,'UTF-8','auto')));
+								break;
+							case 'lastname':
+								$campo->setValor(strtoupper(mb_convert_encoding($d,'UTF-8','auto')));
+								break;
+							case 'persondeoctrapellidomaternoc':
+								$campo->setValor(strtoupper(mb_convert_encoding($d,'UTF-8','auto')));
+								break;
+							default:
+								$campo->setValor( mb_convert_encoding($d,'UTF-8','auto') );
+								break;
+						}
 						$campo->setValor( strtoupper( mb_convert_encoding($d,'UTF-8','auto') ) ); //iconv("UTF-8", "ISO-8859-1", $d));
 					}
 					
