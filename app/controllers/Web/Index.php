@@ -29,6 +29,30 @@ class Index implements ControllerProviderInterface{
 	public function index(Request $request,Application $app){
 		//$x = $this->procedenciatxt(1,$app);
 		//echo "{$x}";
+		$jdcode = json_decode('[[{"EmailAddress":"cesar.huasupoma.l@gmail.com"},{"EmailAddress":"cesar.huasupoma@pucp.pe"},{"EmailAddress":"cesar.huasupoma.l@gmail.com"}]]');
+		
+		$user = new stdClass();
+		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
+		$user->persondeoctrcorreopucpc = 'cesar.huasupoma@pucp.pe';
+
+		foreach($jdcode as $email){
+				if(!empty($user->emailaddress2)){
+					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
+						$user->emailaddress2 == $email["EmailAddress"] ){
+						echo 'false';
+					}
+				}else{
+					echo 'false';
+				}
+				if(!empty($user->persondeoctrcorreopucpc) ){
+					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
+						$user->persondeoctrcorreopucpc == $email["EmailAddress"] ){
+						echo 'false';
+					}
+				}else{
+					echo 'false';
+				}
+        }		
 		return '';
 	}
 	public function procedenciatxt($txt='',$app)
