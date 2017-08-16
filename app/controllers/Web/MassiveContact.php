@@ -97,7 +97,7 @@ public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSales
 			|| isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
 			|| isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
 			 $request_xml .= '
-			 				<ns1:PersonDEO_InformacionAcademicaCollection_c>
+			 				<ns1:InformacionAcademicaCollection_c>
 			 					'.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
 			 					'.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
 			 					'.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
@@ -106,7 +106,7 @@ public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSales
 			 					'.(isset($dataForm->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$dataForm->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
 								'.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
 								'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
-							</ns1:PersonDEO_InformacionAcademicaCollection_c>';
+							</ns1:InformacionAcademicaCollection_c>';
 		}
 		
          $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
