@@ -15,9 +15,7 @@ class Person{
 		
 		$savexml = new \Web\Logsrv();
 		$savexml->savelog($request,'Person-request');
-
-		$savexml2 = new \Web\Logsrv();
-		$savexml2->savelog( json_encode($response),'Person-response');
+		$savexml->savelog( json_encode($response),'Person-response');
 		
 		if(isset($response['result'])){
 			return $response['result']['Value'];
