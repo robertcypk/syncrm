@@ -22,7 +22,8 @@ class Uperson{
 					$soapaction = "http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/mergePerson";
 					$request = $this->updatePersonRequest($emails['Email'], $dataForm, $contacto);
 					
-					
+					$savexml = new \Web\Logsrv();
+					$savexml->savelog($request,'Uperson');
 					
 					if(!empty($request)){
 						$response['response'] = $client->send($request, $soapaction, '');
