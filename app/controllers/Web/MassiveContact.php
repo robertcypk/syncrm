@@ -110,14 +110,16 @@ class MassiveContact
 								'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
 							</ns1:PersonDEO_InformacionAcademicaCollection_c>';
 		}*/
+		/*
+'.(isset($dataForm->emailaddress2)?'<ns1:EmailAddress2>'.strtolower($dataForm->emailaddress2).'</ns1:EmailAddress2>':'').'
+ '.(isset($dataForm->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($dataForm->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
+		*/
 		
          $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
                             '.(isset($dataForm->persondeoctrpaisdenacimientoc)?'<ns1:PersonDEO_CTRPaisdenacimiento_c>'.$dataForm->persondeoctrpaisdenacimientoc.'</ns1:PersonDEO_CTRPaisdenacimiento_c>':'').'
                             '.(isset($dataForm->persondeoctrciudaddenacimientoc)?'<ns1:PersonDEO_CTRCiudaddeNacimiento_c>'.$dataForm->persondeoctrciudaddenacimientoc.'</ns1:PersonDEO_CTRCiudaddeNacimiento_c>':'').'
                             '.(isset($dataForm->persondeoctrnacionalidadc)?'<ns1:PersonDEO_ctrnacionalidad_c>'.$dataForm->persondeoctrnacionalidadc.'</ns1:PersonDEO_ctrnacionalidad_c>':'').'
                             '.(isset($dataForm->emailaddress)?'<ns1:EmailAddress>'.strtolower($dataForm->emailaddress).'</ns1:EmailAddress>':'').'
-							'.(isset($dataForm->emailaddress2)?'<ns1:EmailAddress2>'.strtolower($dataForm->emailaddress2).'</ns1:EmailAddress2>':'').'
-                            '.(isset($dataForm->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($dataForm->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
 							'.(isset($dataForm->persondeoctrcuentaskypec)?'<ns1:PersonDEO_CTRCuentaSkype_c>'.$dataForm->persondeoctrcuentaskypec.'</ns1:PersonDEO_CTRCuentaSkype_c>':'').'
                             '.(isset($dataForm->persondeoctrtipoalumnoc)?'<ns1:PersonDEO_CTRTipoAlumno_c>'.$dataForm->persondeoctrtipoalumnoc.'</ns1:PersonDEO_CTRTipoAlumno_c>':'').'
                             '.(isset($dataForm->persondeoctrcodigopucpc)?' <ns1:PersonDEO_CTRCodigoPUCP_c>'.$dataForm->persondeoctrcodigopucpc.'</ns1:PersonDEO_CTRCodigoPUCP_c>':'').'
