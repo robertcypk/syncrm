@@ -39,29 +39,36 @@ class Index implements ControllerProviderInterface
         $user = new \stdClass();
         $user->emailaddress2 = 'cesar.huasupoma@gmail.com';
         $user->persondeoctrcorreopucpc = '';
-
-        foreach($jdcode as $email){
+        $email1 = true;
+        $email2 = true;
+        $email3 = true;
+        foreach ($jdcode as $email) {
             echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
-                if(!empty($user->emailaddress2)){
-                    if( $user->emailaddress2 == $email->EmailAddress ){
-                        echo '-false-';
-                    }
-                }else{
-                    echo '-false-';
+            if (!empty($user->emailaddress2)) {
+                if ($user->emailaddress2 == $email->EmailAddress) {
+                    $email2 = false;
                 }
-                if(!empty($user->persondeoctrcorreopucpc) ){
-                    if( $user->persondeoctrcorreopucpc == $email->EmailAddress ){
-                        echo '-false-';
-                    }
-                }else{
-                    echo '-false-';
+            } else {
+                $email2 = false;
+            }
+            if (!empty($user->persondeoctrcorreopucpc)) {
+                if ($user->persondeoctrcorreopucpc == $email->EmailAddress) {
+                    $email3 = false;
                 }
+            } else {
+                $email3 = false;
+            }
         }
-        
+        if ($email2 != false) {
+            echo $user->emailaddress2;
+        }
+        if ($email3 != false) {
+            echo $user->emailaddress2;
+        }
         return '';
     }
 
-    public function procedenciatxt($txt='', $app )
+    public function procedenciatxt($txt='', $app)
     {
         $array = [
             0 => [
