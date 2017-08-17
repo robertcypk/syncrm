@@ -33,11 +33,11 @@ class Index implements ControllerProviderInterface
     {
         //$x = $this->procedenciatxt(1,$app);
         //echo "{$x}";
-        /*
-        $jdcode = json_decode('[{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma@pucp.pe","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"}]');
+        
+        $jdcode = json_decode('[{"ContactPointId":"100000002031259","ContactPointType":"EMAIL","Status":"A","OwnerTableName":"HZ_PARTIES","OwnerTableId":"100000001990490","PrimaryFlag":"false","OrigSystemReference":null,"LastUpdateDate":"2015-08-24T07:07:55.212503Z","LastUpdatedBy":"lchocos@pucp.pe","CreationDate":"2015-08-24T07:07:41.054056Z","CreatedBy":"lchocos@pucp.pe","LastUpdateLogin":"-1","RequestId":"-99999","ObjectVersionNumber":"2","CreatedByModule":"HZ_IMPORT","ContactPointPurpose":"BUSINESS","PrimaryByPurpose":"N","StartDate":"2015-08-24","EndDate":"4712-12-31","RelationshipId":null,"PartyUsageCode":null,"OrigSystem":null,"EmailFormat":"","EmailAddress":"jaz7500@gmail.com","PartyName":"JAZMIN LY","OverallPrimaryFlag":"false","OriginalSystemReference":{"OrigSystemReferenceId":"100000002083782","OrigSystem":"CRMONDEMAND","OrigSystemReference":"300000003136772","OwnerTableName":"HZ_CONTACT_POINTS","OwnerTableId":"100000002031259","Status":"A","ReasonCode":null,"OldOrigSystemReference":null,"StartDateActive":"2015-08-24","EndDateActive":"4712-12-31","CreatedBy":"lchocos@pucp.pe","CreationDate":"2015-08-24T07:07:46.56004Z","LastUpdatedBy":"lchocos@pucp.pe","LastUpdateDate":"2015-08-24T07:07:46.56004Z","LastUpdateLogin":"-1","ObjectVersionNumber":"1","CreatedByModule":"HZ_IMPORT","PartyId":"100000001990490","RequestId":"-99999","SourceSystemRefInformation":{"OrigSystemRefId":"100000002083782","__FLEX_Context":null,"_FLEX_NumOfSegments":"0"}},"EmailInformation":{"ContactPointId":"100000002031259","ContactPointType":"EMAIL","__FLEX_Context":null,"_FLEX_NumOfSegments":"0"}},{"ContactPointId":"100000002031258","ContactPointType":"EMAIL","Status":"A","OwnerTableName":"HZ_PARTIES","OwnerTableId":"100000001990490","PrimaryFlag":"true","OrigSystemReference":null,"LastUpdateDate":"2017-08-17T20:40:12.136Z","LastUpdatedBy":"FORMWEB2","CreationDate":"2015-08-24T07:07:41.054056Z","CreatedBy":"lchocos@pucp.pe","LastUpdateLogin":"56F8F8D9A059DBC0E053A69FC80A45BF","RequestId":"-99999","ObjectVersionNumber":"3","CreatedByModule":"HZ_IMPORT","ContactPointPurpose":"PERSONAL","PrimaryByPurpose":"N","StartDate":"2015-08-24","EndDate":"4712-12-31","RelationshipId":null,"PartyUsageCode":null,"OrigSystem":null,"EmailFormat":"","EmailAddress":"jaz7500@gmail.com","PartyName":"JAZMIN LY","OverallPrimaryFlag":"true","OriginalSystemReference":{"OrigSystemReferenceId":"100000002084733","OrigSystem":"CRMONDEMAND","OrigSystemReference":"300000003136771","OwnerTableName":"HZ_CONTACT_POINTS","OwnerTableId":"100000002031258","Status":"A","ReasonCode":null,"OldOrigSystemReference":null,"StartDateActive":"2015-08-24","EndDateActive":"4712-12-31","CreatedBy":"lchocos@pucp.pe","CreationDate":"2015-08-24T07:07:46.56004Z","LastUpdatedBy":"lchocos@pucp.pe","LastUpdateDate":"2015-08-24T07:07:46.56004Z","LastUpdateLogin":"-1","ObjectVersionNumber":"1","CreatedByModule":"HZ_IMPORT","PartyId":"100000001990490","RequestId":"-99999","SourceSystemRefInformation":{"OrigSystemRefId":"100000002084733","__FLEX_Context":null,"_FLEX_NumOfSegments":"0"}},"EmailInformation":{"ContactPointId":"100000002031258","ContactPointType":"EMAIL","__FLEX_Context":null,"_FLEX_NumOfSegments":"0"}}]');
 
         $user = new \stdClass();
-        $user->emailaddress2 = 'cesar.huasupoma@pucp.pe';
+        $user->emailaddress2 = 'cesar.huasupoma@gmail.com';
         $user->persondeoctrcorreopucpc = '';
 
         foreach($jdcode as $email){
@@ -57,7 +57,7 @@ class Index implements ControllerProviderInterface
                     echo '-false-';
                 }
         }
-        */
+        
         return '';
     }
 
