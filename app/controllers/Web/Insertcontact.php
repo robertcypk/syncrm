@@ -123,9 +123,9 @@ class Insertcontact
 
         if (!empty($user->persondeoctrcompaniacempresa)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa;
-        } elseif (!empty($user->persondeoctrcompaniacruc)) {
+        } else if (!empty($user->persondeoctrcompaniacruc)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc;
-        } elseif (!empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa)) {
+        } else if (!empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc.'-'.$user->persondeoctrcompaniacempresa;
         } else {
             $user->persondeoctrcompaniac = '';
