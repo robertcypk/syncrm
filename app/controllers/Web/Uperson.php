@@ -45,9 +45,10 @@ class Uperson
         $email2 = true;
         $email3 = true;
         $arraEmail = array();
+        $request_xml = '';
         //EmailAddress
         if (count($emails['EmailAddress'])==1) {
-            $arraEmail = $emails['EmailAddress'];
+            $arraEmail[] = $emails['EmailAddress'];
         } else {
             $arraEmail = $emails;
         }
@@ -145,10 +146,8 @@ class Uperson
 						</typ:mergePerson>
 					</soapenv:Body>
 				</soapenv:Envelope>';
-
-            return $request_xml;
         }
 
-        return '';
+        return $request_xml;
     }
 }
