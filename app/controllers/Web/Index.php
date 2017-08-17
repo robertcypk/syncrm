@@ -37,26 +37,24 @@ class Index implements ControllerProviderInterface{
 		//print_r($jdcode);
 		echo $user->emailaddress2;
 		echo '<br>';
-		echo $user->persondeoctrcorreopucpcl;
+		echo $user->persondeoctrcorreopucpc;
 		echo '/////<br>';
 
 		foreach($jdcode as $email){
 			echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
 				if(!empty($user->emailaddress2)){
-					if( $email->Status=='A' and $email->PrimaryFlag ==false and 
-						$user->emailaddress2 == $email->EmailAddress ){
-						echo 'false';
+					if( $user->emailaddress2 == $email->EmailAddress and ($email->Status=='A' and $email->PrimaryFlag==false) ){
+						echo '-false-';
 					}
 				}else{
-					echo 'false';
+					echo '-false-';
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if( $email->Status=='A' and $email->PrimaryFlag==false and 
-						$user->persondeoctrcorreopucpc == $email->EmailAddress ){
-						echo 'false';
+					if( $user->persondeoctrcorreopucpc == $email->EmailAddress and  ($email->Status=='A' and $email->PrimaryFlag==false) ){
+						echo '-false-';
 					}
 				}else{
-					echo 'false';
+					echo '-false-';
 				}
         }		
 		return '';
