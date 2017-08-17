@@ -29,7 +29,7 @@ class Index implements ControllerProviderInterface{
 	public function index(Request $request,Application $app){
 		//$x = $this->procedenciatxt(1,$app);
 		//echo "{$x}";
-		$jdcode = json_decode('[{"EmailAddress":"cesar.huasupoma.l@gmail.com"},{"EmailAddress":"cesar.huasupoma@pucp.pe"},{"EmailAddress":"cesar.huasupoma.l@gmail.com"}]');
+		$jdcode = json_decode('[{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma@pucp.pe","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"}]');
 		
 		$user = new \stdClass();
 		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
@@ -37,16 +37,16 @@ class Index implements ControllerProviderInterface{
 		print_r($jdcode);
 		foreach($jdcode as $email){
 				if(!empty($user->emailaddress2)){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						$user->emailaddress2 == $email["EmailAddress"] ){
+					if( $email→Status=='A' and $email->PrimaryFlag ==false and 
+						$user->emailaddress2 == $email->EmailAddress ){
 						echo 'false';
 					}
 				}else{
 					echo 'false';
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						$user->persondeoctrcorreopucpc == $email["EmailAddress"] ){
+					if( $email->Status=='A' and $email->PrimaryFlag==false and 
+						$user->persondeoctrcorreopucpc == $email->EmailAddress ){
 						echo 'false';
 					}
 				}else{
