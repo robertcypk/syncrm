@@ -59,7 +59,8 @@ class Insertcontact{
                 if($user->country !='PE'){
 					$request_xml .= '
                             <ns1:PrimaryAddress>
-							    '.(isset($user->addresselementattribute3)?'<ns2:AddressElementAttribute3>'.$user->addresselementattribute3.'</ns2:AddressElementAttribute3>':'').'
+							    '.(isset($user->addresselementattribute3)?'<ns2:Addressline3>'.$user->addresselementattribute3.'</ns2:Addressline3>':'').'
+							    '.(isset($user->addresselementattribute3)?'<ns2:Addressline2>'.$user->addresselementattribute3.'</ns2:Addressline2>':'').'
                                 '.(isset($user->addressline1)?'<ns2:Addressline1>'.$user->addressline1.'</ns2:Addressline1>':'').'
                                 '.(isset($user->country)?'<ns2:Country>'.$user->country.'</ns2:Country>':'').'
                                 '.(isset($user->city)?'<ns2:City>'.$user->city.'</ns2:City>':'').'
@@ -67,7 +68,7 @@ class Insertcontact{
 				}else{
 					$request_xml .= '
                             <ns1:PrimaryAddress>
-                                '.(isset($user->city)?'<ns2:AddressElementAttribute2>'.$user->city.'</ns2:AddressElementAttribute2>':'').'
+                                '.(isset($user->addresselementattribute2)?'<ns2:AddressElementAttribute2>'.$user->addresselementattribute2.'</ns2:AddressElementAttribute2>':'').'
                                 '.(isset($user->addresselementattribute3)?'<ns2:AddressElementAttribute3>'.$user->addresselementattribute3.'</ns2:AddressElementAttribute3>':'').'
                                 '.(isset($user->addressline1)?'<ns2:Addressline1>'.$user->addressline1.'</ns2:Addressline1>':'').'
                                 '.(isset($user->country)?'<ns2:Country>'.$user->country.'</ns2:Country>':'').'
