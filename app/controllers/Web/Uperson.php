@@ -62,16 +62,14 @@ class Uperson{
 					$email1 = false;
 				}*/
 				if(!empty($user->emailaddress2)){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						$user->emailaddress2 == $email["EmailAddress"] ){
+					if($user->emailaddress2 == $email["EmailAddress"]){
 						$email2 = false;
 					}
 				}else{
 					$email2 = false;
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if( $email['Status']=='A' and $email['PrimaryFlag']==false and 
-						$user->persondeoctrcorreopucpc == $email["EmailAddress"] ){
+					if($user->persondeoctrcorreopucpc == $email["EmailAddress"]){
 						$email3 = false;
 					}
 				}else{
