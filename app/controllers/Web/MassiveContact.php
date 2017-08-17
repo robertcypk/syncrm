@@ -7,38 +7,37 @@ use Silex\Application;
 
 class MassiveContact
 {
+    public $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
+    /*
+    * Update Contact Masive
+    */
 
-     var $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
-/* 
-* Update Contact Masive 
-*/
+    public function updateContactMassive($contacto, $dataForm, $try)
+    {
+        $soap = new Soap();
+        $client = $soap->getClient($this->wsContacto);
+        $soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/updateContact";
+        
+        $request = $this->updateContactRequest($contacto, $dataForm);
+        
+        $savexml = new \Web\Logsrv();
+        $savexml->savelog($request, 'updateContactMassive');
 
-	public function updateContactMassive($contacto, $dataForm, $try)
-	{
-		
-		$soap = new Soap();
-		$client = $soap->getClient($this->wsContacto);
-		$soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/updateContact";
-		
-		$request = $this->updateContactRequest($contacto, $dataForm);
-		
-		$savexml = new \Web\Logsrv();
-		$savexml->savelog($request,'updateContactMassive');
+        $response = $client->send($request, $soapaction, '');
+        
 
-		$response = $client->send($request, $soapaction, '');
-		
+        if (!empty($response['result'])) {
+            return $response;
+        }
+        $try += 1;
+        if ($try<3) {
+            return $this->updateContactMassive($contacto, $dataForm, $try);
+        }
+    }
 
-		if(!empty($response['result'])){
-			
-			return $response;
-		}
-		$try += 1;
-		if($try<3)
-			return $this->updateContactMassive($contacto, $dataForm, $try);
-	}
-
-	public function updateContactRequest($contacto, $dataForm){
-		$request_xml ='
+    public function updateContactRequest($contacto, $dataForm)
+    {
+        $request_xml ='
 			<soapenv:Envelope
                 xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
                 xmlns:ns1="http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/"
@@ -61,64 +60,62 @@ class MassiveContact
 							'.(isset($dataForm->persondeoctrsituacionactualc)?'<ns1:PersonDEO_CTRSituacionActual_c>'.$dataForm->persondeoctrsituacionactualc.'</ns1:PersonDEO_CTRSituacionActual_c>':'');
 
         /*if(isset($user->addresselementattribute2))
-		        $user->city = $dataForm->addresselementattribute2;
-		if(isset($user->country)){
-		    if($user->country=='PE'){
-			    $user->city = '';
-			}else{
-			    $user->addresselementattribute2 = '';
-			}
-	    }*/
+                $user->city = $dataForm->addresselementattribute2;
+        if(isset($user->country)){
+            if($user->country=='PE'){
+                $user->city = '';
+            }else{
+                $user->addresselementattribute2 = '';
+            }
+        }*/
         
-        if((isset($dataForm->addresselementattribute2) || isset($dataForm->addresselementattribute3)
-        	|| isset($dataForm->addressline1) || isset($dataForm->country) || isset($dataForm->city))
-        	&& isset($contacto["PrimaryAddress"])){
-				
-				if($dataForm->country !='PE'){
-					//OTROS PAISES
-					$request_xml .= '
+        if ((isset($dataForm->addresselementattribute2) || isset($dataForm->addresselementattribute3)
+            || isset($dataForm->addressline1) || isset($dataForm->country) || isset($dataForm->city))
+            && isset($contacto["PrimaryAddress"])) {
+            if ($dataForm->country !='PE') {
+                //OTROS PAISES
+                $request_xml .= '
                             <ns1:PrimaryAddress>
 							    '.(isset($dataForm->addresselementattribute3)?'<ns2:Addressline3>'.$dataForm->addresselementattribute3.'</ns2:Addressline3>':'').'
 							    '.(isset($dataForm->addresselementattribute3)?'<ns2:Addressline2>'.$dataForm->addresselementattribute3.'</ns2:Addressline2>':'').'
                                 '.(isset($dataForm->addressline1)?'<ns2:Addressline1>'.$dataForm->addressline1.'</ns2:Addressline1>':'').'
                                 '.(isset($dataForm->country)?'<ns2:Country>'.$dataForm->country.'</ns2:Country>':'').'
                                 '.(isset($dataForm->city)?'<ns2:City>'.$dataForm->city.'</ns2:City>':'').'
-                            </ns1:PrimaryAddress>';				
-				}else{
-					//SOLO PERU
-					$request_xml .= '
+                            </ns1:PrimaryAddress>';
+            } else {
+                //SOLO PERU
+                $request_xml .= '
                             <ns1:PrimaryAddress>
                                 '.(isset($dataForm->addresselementattribute2)?'<ns2:AddressElementAttribute2>'.$dataForm->addresselementattribute2.'</ns2:AddressElementAttribute2>':'').'
                                 '.(isset($dataForm->addresselementattribute3)?'<ns2:AddressElementAttribute3>'.$dataForm->addresselementattribute3.'</ns2:AddressElementAttribute3>':'').'
                                 '.(isset($dataForm->addressline1)?'<ns2:Addressline1>'.$dataForm->addressline1.'</ns2:Addressline1>':'').'
                                 '.(isset($dataForm->country)?'<ns2:Country>'.$dataForm->country.'</ns2:Country>':'').'
                             </ns1:PrimaryAddress>';
-				}	
-
+            }
         }
-		//
-		/*
-		if(isset($dataForm->ctrgradoacademicoc) || isset($dataForm->ctrinstitucionacademicac)
-			|| isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
-			|| isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
-			 $request_xml .= '
-			 				<ns1:PersonDEO_InformacionAcademicaCollection_c>
-			 					'.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
-			 					'.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
-			 					'.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
-			 					'.(isset($dataForm->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$dataForm->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
-			 					'.(isset($dataForm->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$dataForm->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
-			 					'.(isset($dataForm->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$dataForm->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
-								'.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
-								'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
-							</ns1:PersonDEO_InformacionAcademicaCollection_c>';
-		}*/
-		/*
+        //
+        /*
+        if(isset($dataForm->ctrgradoacademicoc) || isset($dataForm->ctrinstitucionacademicac)
+            || isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
+            || isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
+             $request_xml .= '
+                             <ns1:PersonDEO_InformacionAcademicaCollection_c>
+                                 '.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
+                                 '.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
+                                 '.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
+                                 '.(isset($dataForm->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$dataForm->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
+                                 '.(isset($dataForm->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$dataForm->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
+                                 '.(isset($dataForm->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$dataForm->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
+                                '.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
+                                '.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
+                            </ns1:PersonDEO_InformacionAcademicaCollection_c>';
+        }*/
+        /*
 '.(isset($dataForm->emailaddress2)?'<ns1:EmailAddress2>'.strtolower($dataForm->emailaddress2).'</ns1:EmailAddress2>':'').'
  '.(isset($dataForm->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($dataForm->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
-		*/
-		
-         $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
+        */
+        
+        $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
                             '.(isset($dataForm->persondeoctrpaisdenacimientoc)?'<ns1:PersonDEO_CTRPaisdenacimiento_c>'.$dataForm->persondeoctrpaisdenacimientoc.'</ns1:PersonDEO_CTRPaisdenacimiento_c>':'').'
                             '.(isset($dataForm->persondeoctrciudaddenacimientoc)?'<ns1:PersonDEO_CTRCiudaddeNacimiento_c>'.$dataForm->persondeoctrciudaddenacimientoc.'</ns1:PersonDEO_CTRCiudaddeNacimiento_c>':'').'
                             '.(isset($dataForm->persondeoctrnacionalidadc)?'<ns1:PersonDEO_ctrnacionalidad_c>'.$dataForm->persondeoctrnacionalidadc.'</ns1:PersonDEO_ctrnacionalidad_c>':'').'
@@ -137,28 +134,26 @@ class MassiveContact
                             '.(isset($dataForm->persondeoctraniosdeexperienciac)?'<ns1:PersonDEO_CTRAniosdeexperiencia_c>'.$dataForm->persondeoctraniosdeexperienciac.'</ns1:PersonDEO_CTRAniosdeexperiencia_c>':'').'
                             '.(isset($dataForm->persondeoctrobservacionc)?' <ns1:PersonDEO_CTRObservacion_c>'.$dataForm->persondeoctrobservacionc.'</ns1:PersonDEO_CTRObservacion_c>':'').'
                             '.(isset($dataForm->persondeoctrprocedenciac)?' <ns1:PersonDEO_CTRProcedencia_c>'.$dataForm->persondeoctrprocedenciac.'</ns1:PersonDEO_CTRProcedencia_c>':'').'';
-		
-		if(isset($dataForm->persondeoctrautorizodatospersonfinesmc)){					
+        
+        if (isset($dataForm->persondeoctrautorizodatospersonfinesmc)) {
             $request_xml .= '<ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>t</ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>';
-		}else{
-			$request_xml .= '<ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>false</ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>';
-		}	
-		
-		if(isset($dataForm->persondeoctrautorizoenvinfprogacac)){
-			$request_xml .= '<ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>t</ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>';
-        }else{
-			$request_xml .= '<ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>false</ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>';
-		}    
-		
-			$request_xml .= (isset($dataForm->persondeoctrsalariomedioanualc)?' <ns1:PersonDEO_CTRSalarioMedioAnual_c>'.$dataForm->persondeoctrsalariomedioanualc.'</ns1:PersonDEO_CTRSalarioMedioAnual_c>':'').'
+        } else {
+            $request_xml .= '<ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>false</ns1:PersonDEO_CTRAutorizoDatosPersonFinesM_c>';
+        }
+        
+        if (isset($dataForm->persondeoctrautorizoenvinfprogacac)) {
+            $request_xml .= '<ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>t</ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>';
+        } else {
+            $request_xml .= '<ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>false</ns1:PersonDEO_CTRAutorizoEnvInfProgAca_c>';
+        }
+        
+        $request_xml .= (isset($dataForm->persondeoctrsalariomedioanualc)?' <ns1:PersonDEO_CTRSalarioMedioAnual_c>'.$dataForm->persondeoctrsalariomedioanualc.'</ns1:PersonDEO_CTRSalarioMedioAnual_c>':'').'
                             '.(isset($dataForm->currencycode)?' <ns1:CurrencyCode>'.$dataForm->currencycode.'</ns1:CurrencyCode>':'').'
                         </ns4:contact>
                     </ns4:updateContact>
                 </soapenv:Body>
             </soapenv:Envelope>';
-			
-		return $request_xml;
-	}
-   
+            
+        return $request_xml;
+    }
 }
-?>
