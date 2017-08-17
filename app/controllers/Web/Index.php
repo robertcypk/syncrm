@@ -38,7 +38,7 @@ class Index implements ControllerProviderInterface{
 		echo $user->emailaddress2;
 		echo '<br>';
 		echo $user->persondeoctrcorreopucpcl;
-		echo '/////<br>'
+		echo '/////<br>';
 
 		foreach($jdcode as $email){
 			echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
