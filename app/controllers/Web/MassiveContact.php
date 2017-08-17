@@ -8,7 +8,7 @@ use Silex\Application;
 class MassiveContact
 {
 
- private $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
+     var $wsContacto="https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL";
 /* 
 * Update Contact Masive 
 */
@@ -127,6 +127,8 @@ class MassiveContact
                             '.(isset($dataForm->persondeoctrtipoalumnoc)?'<ns1:PersonDEO_CTRTipoAlumno_c>'.$dataForm->persondeoctrtipoalumnoc.'</ns1:PersonDEO_CTRTipoAlumno_c>':'').'
                             '.(isset($dataForm->persondeoctrcodigopucpc)?' <ns1:PersonDEO_CTRCodigoPUCP_c>'.$dataForm->persondeoctrcodigopucpc.'</ns1:PersonDEO_CTRCodigoPUCP_c>':'').'
                             '.(isset($dataForm->persondeoctrdondelaborasc)?'<ns1:PersonDEO_CTRDondeLaboras_c>'.$dataForm->persondeoctrdondelaborasc.'</ns1:PersonDEO_CTRDondeLaboras_c>':'').'
+                            '.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
+							'.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
 							'.(isset($dataForm->persondeoctrcompaniac)?'<ns1:PersonDEO_CTRCompania_c>'.$dataForm->persondeoctrcompaniac.'</ns1:PersonDEO_CTRCompania_c>':'').'
                             '.(isset($dataForm->jobtitle)?'<ns1:JobTitle>'.$dataForm->jobtitle.'</ns1:JobTitle>':'').'
                             '.(isset($dataForm->workphonenumber)?'<ns1:WorkPhoneNumber>'.$dataForm->workphonenumber.'</ns1:WorkPhoneNumber>':'').'
