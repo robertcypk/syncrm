@@ -62,14 +62,14 @@ class Uperson{
 					$email1 = false;
 				}*/
 				if(!empty($user->emailaddress2)){
-					if($user->emailaddress2 == $email["EmailAddress"]){
+					if($user->emailaddress2 === $email["EmailAddress"]){
 						$email2 = false;
 					}
 				}else{
 					$email2 = false;
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if($user->persondeoctrcorreopucpc == $email["EmailAddress"]){
+					if($user->persondeoctrcorreopucpc === $email["EmailAddress"]){
 						$email3 = false;
 					}
 				}else{
@@ -97,7 +97,7 @@ class Uperson{
 					<con:OwnerTableId>'.$contacto['PartyId'].'</con:OwnerTableId>
 					<con:PrimaryFlag>false</con:PrimaryFlag>
 					<con:ContactPointPurpose>BUSINESS</con:ContactPointPurpose>
-					<con:EmailAddress>'.strtolower($user->emailaddress2).'</con:EmailAddress>
+					<con:EmailAddress>'.$user->emailaddress2.'</con:EmailAddress>
 					<con:PrimaryByPurpose>N</con:PrimaryByPurpose>
 					<con:CreatedByModule>HZ_WS</con:CreatedByModule>
 				</per:Email>';
@@ -110,7 +110,7 @@ class Uperson{
 					<con:OwnerTableId>'.$contacto['PartyId'].'</con:OwnerTableId>
 					<con:PrimaryFlag>false</con:PrimaryFlag>
 					<con:ContactPointPurpose>PUCP</con:ContactPointPurpose>
-					<con:EmailAddress>'.strtolower($user->persondeoctrcorreopucpc).'</con:EmailAddress>
+					<con:EmailAddress>'.$user->persondeoctrcorreopucpc.'</con:EmailAddress>
 					<con:PrimaryByPurpose>N</con:PrimaryByPurpose>
 					<con:CreatedByModule>HZ_WS</con:CreatedByModule>
 				</per:Email>';
