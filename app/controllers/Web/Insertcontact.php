@@ -114,8 +114,18 @@ class Insertcontact{
 							</ns1:PersonDEO_IdiomaCollection_c>';
 		}
 
+		if( !empty($user->persondeoctrcompaniacempresa) ){
+			$user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa;
+		}else if( !empty($user->persondeoctrcompaniacruc) ){
+			$user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc;
+		}else if( !empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa) ){
+			$user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc.'-'.$user->persondeoctrcompaniacempresa;
+		}else{
+			$user->persondeoctrcompaniac = '';
+		}
+
 		 $request_xml .= '
-							'.(isset($dataForm->persondeoctrdondelaborasc)?'<ns1:PersonDEO_CTRDondeLaboras_c>'.$dataForm->persondeoctrdondelaborasc.'</ns1:PersonDEO_CTRDondeLaboras_c>':'').'
+							'.(isset($user->persondeoctrdondelaborasc)?'<ns1:PersonDEO_CTRDondeLaboras_c>'.$user->persondeoctrdondelaborasc.'</ns1:PersonDEO_CTRDondeLaboras_c>':'').'
 						    '.(isset($user->persondeoctrcompaniac)?'<ns1:PersonDEO_CTRCompania_c>'.$user->persondeoctrcompaniac.'</ns1:PersonDEO_CTRCompania_c>':'').'
 						    '.(isset($user->jobtitle)?'<ns1:JobTitle>'.$user->jobtitle.'</ns1:JobTitle>':'').'
 						    '.(isset($user->workphonenumber)?'<ns1:WorkPhoneNumber>'.$user->workphonenumber.'</ns1:WorkPhoneNumber>':'').'
