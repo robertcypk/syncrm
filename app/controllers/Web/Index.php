@@ -29,17 +29,12 @@ class Index implements ControllerProviderInterface{
 	public function index(Request $request,Application $app){
 		//$x = $this->procedenciatxt(1,$app);
 		//echo "{$x}";
-		/*
+		
 		$jdcode = json_decode('[{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma@pucp.pe","Status":"A","PrimaryFlag":"false"},{"EmailAddress":"cesar.huasupoma.l@gmail.com","Status":"A","PrimaryFlag":"false"}]');
 		
 		$user = new \stdClass();
-		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
-		$user->persondeoctrcorreopucpc = 'cesar.huasupoma@pucp.pe';
-		//print_r($jdcode);
-		echo $user->emailaddress2;
-		echo '<br>';
-		echo $user->persondeoctrcorreopucpc;
-		echo '/////<br>';
+		$user->emailaddress2 = 'cesar.huasupoma@pucp.pe';
+		$user->persondeoctrcorreopucpc = '';
 
 		foreach($jdcode as $email){
 			echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
@@ -57,7 +52,7 @@ class Index implements ControllerProviderInterface{
 				}else{
 					echo '-false-';
 				}
-        }		*/
+        }		
 		return '';
 	}
 	public function procedenciatxt($txt='',$app)
