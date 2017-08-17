@@ -47,6 +47,7 @@ class Index implements ControllerProviderInterface
             }else{
                 $email1 = false;
             }*/
+            echo '-'.$email["EmailAddress"].'<br><br>';
             if (!empty($user->emailaddress2)) {
                 if ($user->emailaddress2 === $email["EmailAddress"]) {
                     echo '2<br>';
