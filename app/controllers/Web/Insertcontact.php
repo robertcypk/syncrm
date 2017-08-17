@@ -12,7 +12,9 @@ class Insertcontact{
 		
 		$response = $client->send($request, $soapaction, '');
 		
-		$response['xml'] = base64_encode($request);
+		//$response['xml'] = base64_encode($request);
+		$savexml = new \Web\Logsrv();
+		$savexml->savelog($request,'Insertcontact');
 		
 		if(!empty($response['faultstring'])){
 			return $response;
