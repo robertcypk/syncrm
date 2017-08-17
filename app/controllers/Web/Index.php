@@ -34,8 +34,9 @@ class Index implements ControllerProviderInterface{
 		$user = new \stdClass();
 		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
 		$user->persondeoctrcorreopucpc = 'cesar.huasupoma@pucp.pe';
-		print_r($jdcode);
+		//print_r($jdcode);
 		foreach($jdcode as $email){
+			echo $email->EmailAddress.'<br>';
 				if(!empty($user->emailaddress2)){
 					if( $email→Status=='A' and $email->PrimaryFlag ==false and 
 						$user->emailaddress2 == $email->EmailAddress ){
