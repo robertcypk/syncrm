@@ -75,14 +75,17 @@ class MassiveContact
         	&& isset($contacto["PrimaryAddress"])){
 				
 				if($dataForm->country !='PE'){
+					//OTROS PAISES
 					$request_xml .= '
                             <ns1:PrimaryAddress>
-							    '.(isset($dataForm->addresselementattribute3)?'<ns2:AddressElementAttribute3>'.$dataForm->addresselementattribute3.'</ns2:AddressElementAttribute3>':'').'
+							    '.(isset($dataForm->addresselementattribute3)?'<ns2:Addressline3>'.$dataForm->addresselementattribute3.'</ns2:Addressline3>':'').'
+							    '.(isset($dataForm->addresselementattribute3)?'<ns2:Addressline2>'.$dataForm->addresselementattribute3.'</ns2:Addressline2>':'').'
                                 '.(isset($dataForm->addressline1)?'<ns2:Addressline1>'.$dataForm->addressline1.'</ns2:Addressline1>':'').'
                                 '.(isset($dataForm->country)?'<ns2:Country>'.$dataForm->country.'</ns2:Country>':'').'
                                 '.(isset($dataForm->city)?'<ns2:City>'.$dataForm->city.'</ns2:City>':'').'
                             </ns1:PrimaryAddress>';				
 				}else{
+					//SOLO PERU
 					$request_xml .= '
                             <ns1:PrimaryAddress>
                                 '.(isset($dataForm->city)?'<ns2:AddressElementAttribute2>'.$dataForm->city.'</ns2:AddressElementAttribute2>':'').'
