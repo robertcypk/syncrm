@@ -31,7 +31,7 @@ class Index implements ControllerProviderInterface{
 		//echo "{$x}";
 		$jdcode = json_decode('[[{"EmailAddress":"cesar.huasupoma.l@gmail.com"},{"EmailAddress":"cesar.huasupoma@pucp.pe"},{"EmailAddress":"cesar.huasupoma.l@gmail.com"}]]');
 		
-		$user = new stdClass();
+		$user = new \stdClass();
 		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
 		$user->persondeoctrcorreopucpc = 'cesar.huasupoma@pucp.pe';
 
