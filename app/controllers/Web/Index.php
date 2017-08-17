@@ -43,14 +43,14 @@ class Index implements ControllerProviderInterface{
 		foreach($jdcode as $email){
 			echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
 				if(!empty($user->emailaddress2)){
-					if( $user->emailaddress2 == $email->EmailAddress and ($email->Status=='A' and $email->PrimaryFlag==false) ){
+					if( $user->emailaddress2 == $email->EmailAddress ){
 						echo '-false-';
 					}
 				}else{
 					echo '-false-';
 				}
 				if(!empty($user->persondeoctrcorreopucpc) ){
-					if( $user->persondeoctrcorreopucpc == $email->EmailAddress and  ($email->Status=='A' and $email->PrimaryFlag==false) ){
+					if( $user->persondeoctrcorreopucpc == $email->EmailAddress ){
 						echo '-false-';
 					}
 				}else{
