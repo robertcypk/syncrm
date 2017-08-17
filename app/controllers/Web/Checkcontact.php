@@ -22,9 +22,11 @@ class Checkcontact{
 				if(isset($response['result']['Value'])){
 					if(isset($response['result']['Value']['PartyId'])){
 						
-						$logger = new Emailuser();
-						$log = $logger->logger('checkContact',json_encode($response['result']['Value']),$app);
-						
+						//$logger = new Emailuser();
+						//$log = $logger->logger('checkContact',json_encode($response['result']['Value']),$app);
+						$savexml = new \Web\Logsrv();
+        				$savexml->savelog($response['result'],'checkContact');
+
 						return $response['result']['Value'];
 					}else{
 						//DB::table('usuario_crm')->where('id','=',$usuario)->update(array('dupli'=>'1'));
