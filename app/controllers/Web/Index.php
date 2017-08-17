@@ -35,6 +35,11 @@ class Index implements ControllerProviderInterface{
 		$user->emailaddress2 = 'cesar.huasupoma.l@gmail.com';
 		$user->persondeoctrcorreopucpc = 'cesar.huasupoma@pucp.pe';
 		//print_r($jdcode);
+		echo $user->emailaddress2;
+		echo '<br>';
+		echo $user->persondeoctrcorreopucpcl;
+		echo '/////<br>'
+
 		foreach($jdcode as $email){
 			echo $email->EmailAddress.'-'.$email->Status.'-'.$email->PrimaryFlag .'<br>';
 				if(!empty($user->emailaddress2)){
