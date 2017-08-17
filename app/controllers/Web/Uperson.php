@@ -44,9 +44,9 @@ class Uperson{
         $arraEmail = array();
 		//EmailAddress
         if( empty($emails['EmailAddress']) ){
-        	$arraEmail[] = $emails;
+        	$arraEmail = $emails;
 		}else{
-			$arraEmail[] = $emails['EmailAddress'];
+			$arraEmail = $emails['EmailAddress'];
 		}
 
 		$savexml = new \Web\Logsrv();
