@@ -121,9 +121,9 @@ class Insertcontact
 							</ns1:PersonDEO_IdiomaCollection_c>';
         }
 
-        if (!empty($user->persondeoctrcompaniacempresa)) {
+        if (!empty($user->persondeoctrcompaniacempresa) and  empty($user->persondeoctrcompaniacruc)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa;
-        } else if (!empty($user->persondeoctrcompaniacruc)) {
+        } else if (empty($user->persondeoctrcompaniacempresa) and !empty($user->persondeoctrcompaniacruc)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc;
         } else if (!empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc.'-'.$user->persondeoctrcompaniacempresa;

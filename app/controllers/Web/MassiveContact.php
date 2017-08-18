@@ -114,7 +114,16 @@ class MassiveContact
 '.(isset($dataForm->emailaddress2)?'<ns1:EmailAddress2>'.strtolower($dataForm->emailaddress2).'</ns1:EmailAddress2>':'').'
  '.(isset($dataForm->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($dataForm->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
         */
-        
+        if (!empty($user->persondeoctrcompaniacempresa) and  empty($user->persondeoctrcompaniacruc)) {
+            $user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa;
+        } else if (empty($user->persondeoctrcompaniacempresa) and !empty($user->persondeoctrcompaniacruc)) {
+            $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc;
+        } else if (!empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa)) {
+            $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc.'-'.$user->persondeoctrcompaniacempresa;
+        } else {
+            $user->persondeoctrcompaniac = '';
+        }
+
         $request_xml .= '<ns1:DateOfBirth>'.$dataForm->dateofbirth.'</ns1:DateOfBirth>
                             '.(isset($dataForm->persondeoctrpaisdenacimientoc)?'<ns1:PersonDEO_CTRPaisdenacimiento_c>'.$dataForm->persondeoctrpaisdenacimientoc.'</ns1:PersonDEO_CTRPaisdenacimiento_c>':'').'
                             '.(isset($dataForm->persondeoctrciudaddenacimientoc)?'<ns1:PersonDEO_CTRCiudaddeNacimiento_c>'.$dataForm->persondeoctrciudaddenacimientoc.'</ns1:PersonDEO_CTRCiudaddeNacimiento_c>':'').'
