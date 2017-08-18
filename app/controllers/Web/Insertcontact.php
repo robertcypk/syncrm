@@ -75,7 +75,7 @@ class Insertcontact
                             <ns1:PrimaryAddress>
                                 '.(isset($user->addresselementattribute2)?'<ns2:AddressElementAttribute2>'.$user->addresselementattribute2.'</ns2:AddressElementAttribute2>':'').'
                                 '.(isset($user->addresselementattribute3)?'<ns2:AddressElementAttribute3>'.$user->addresselementattribute3.'</ns2:AddressElementAttribute3>':'').'
-                                '.(isset($user->addressline1)?'<ns2:Addressline1>'.$user->addressline1.'</ns2:Addressline1>':'').'
+                                '.(isset($user->addressline1)?'<ns2:AddressLine1>'.$user->addressline1.'</ns2:AddressLine1>':'').'
                                 '.(isset($user->country)?'<ns2:Country>'.$user->country.'</ns2:Country>':'').'
                             </ns1:PrimaryAddress>';
             }
