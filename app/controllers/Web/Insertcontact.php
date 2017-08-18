@@ -64,8 +64,8 @@ class Insertcontact
             if ($user->country !='PE') {
                 $request_xml .= '
                             <ns1:PrimaryAddress>
-							    '.(isset($user->addresselementattribute3)?'<ns2:AddressLine3>'.$user->addresselementattribute3.'</ns2:AddressLine3>':'').'
-							    '.(isset($user->addresselementattribute3)?'<ns2:AddressLine2>'.$user->addresselementattribute3.'</ns2:AddressLine2>':'').'
+                                '.(isset($user->addresselementattribute3)?'<ns2:City>'.$user->addresselementattribute3.'</ns2:City>':'').'
+                                '.(isset($user->addresselementattribute2)?'<ns2:AddressLine2>'.$user->addresselementattribute2.'</ns2:AddressLine2>':'').'
                                 '.(isset($user->addressline1)?'<ns2:AddressLine1>'.$user->addressline1.'</ns2:AddressLine1>':'').'
                                 '.(isset($user->country)?'<ns2:Country>'.$user->country.'</ns2:Country>':'').'
                                 '.(isset($user->city)?'<ns2:City>'.$user->city.'</ns2:City>':'').'
