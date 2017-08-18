@@ -99,7 +99,7 @@ class MassiveContact
         } else if (empty($user->persondeoctrcompaniacempresa) and !empty($user->persondeoctrcompaniacruc)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc;
         } else if (!empty($user->persondeoctrcompaniacruc) and !empty($user->persondeoctrcompaniacempresa)) {
-            $user->persondeoctrcompaniac = $user->persondeoctrcompaniacruc.'-'.$user->persondeoctrcompaniacempresa;
+            $user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa.'-'.$user->persondeoctrcompaniacruc;
         } else {
             $user->persondeoctrcompaniac = '';
         }
