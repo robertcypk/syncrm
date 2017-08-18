@@ -90,9 +90,9 @@ class Insertcontact
 						    '.(isset($user->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($user->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
 						    '.(isset($user->persondeoctrcuentaskypec)?'<ns1:PersonDEO_CTRCuentaSkype_c>'.$user->persondeoctrcuentaskypec.'</ns1:PersonDEO_CTRCuentaSkype_c>':'');
 
-        $request_xml .= (isset($user->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$user->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'');
+        $request_xml .= (isset($user->persondeoctrestudiospreviosc)?'<ns1:PersonDEO_CTREstudiosPrevios_c>'.$user->persondeoctrestudiospreviosc.'</ns1:PersonDEO_CTREstudiosPrevios_c>':'');
 
-        $request_xml .= (isset($user->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$user->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'');
+        $request_xml .= (isset($user->persondeoctrprogramaqueestudioc)?'<ns1:PersonDEO_CTRProgramaQueEstudio_c>'.$user->persondeoctrprogramaqueestudioc.'</ns1:PersonDEO_CTRProgramaQueEstudio_c>':'');
 
         if (isset($user->ctrgradoacademicoc) || isset($user->ctrinstitucionacademicac)
             || isset($user->ctrotrasuniversidadesinstc) || isset($user->ctrespecialidadc)
