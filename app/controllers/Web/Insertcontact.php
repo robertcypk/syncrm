@@ -21,6 +21,7 @@ class Insertcontact
         $savexml->savelog($request, 'Insertcontact');
         
         if (!empty($response['faultstring'])) {
+            $savexml->savelog($response['faultstring'], 'Insertcontact-faultstring');
             return $response;
         }
         
