@@ -90,6 +90,10 @@ class Insertcontact
 						    '.(isset($user->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($user->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
 						    '.(isset($user->persondeoctrcuentaskypec)?'<ns1:PersonDEO_CTRCuentaSkype_c>'.$user->persondeoctrcuentaskypec.'</ns1:PersonDEO_CTRCuentaSkype_c>':'');
 
+        $request_xml .= (isset($user->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$user->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'');
+
+        $request_xml .= (isset($user->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$user->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'');
+
         if (isset($user->ctrgradoacademicoc) || isset($user->ctrinstitucionacademicac)
             || isset($user->ctrotrasuniversidadesinstc) || isset($user->ctrespecialidadc)
             || isset($user->ctranomesquefinalizoestsupc) || isset($user->ctrnivelacademicoc)) {
@@ -101,8 +105,6 @@ class Insertcontact
 			 					'.(isset($user->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$user->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
 			 					'.(isset($user->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$user->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
 			 					'.(isset($user->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$user->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
-								'.(isset($user->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$user->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
-								'.(isset($user->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$user->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
 			 				</ns1:PersonDEO_InformacionAcademicaCollection_c>';
         }
 
