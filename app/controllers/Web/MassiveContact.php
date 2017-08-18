@@ -93,27 +93,7 @@ class MassiveContact
                             </ns1:PrimaryAddress>';
             }
         }
-        //
-        /*
-        if(isset($dataForm->ctrgradoacademicoc) || isset($dataForm->ctrinstitucionacademicac)
-            || isset($dataForm->ctrotrasuniversidadesinstc) || isset($dataForm->ctrespecialidadc)
-            || isset($dataForm->ctranomesquefinalizoestsupc) || isset($dataForm->ctrnivelacademicoc)){
-             $request_xml .= '
-                             <ns1:PersonDEO_InformacionAcademicaCollection_c>
-                                 '.(isset($dataForm->ctrgradoacademicoc)?'<ns3:CTRGradoAcademico_c>'.$dataForm->ctrgradoacademicoc.'</ns3:CTRGradoAcademico_c>':'').'
-                                 '.(isset($dataForm->ctrinstitucionacademicac)?'<ns3:CTRInstitucionAcademica_c>'.$dataForm->ctrinstitucionacademicac.'</ns3:CTRInstitucionAcademica_c>':'').'
-                                 '.(isset($dataForm->ctrotrasuniversidadesinstc)?'<ns3:CTROtrasUniversidadesInst_c>'.$dataForm->ctrotrasuniversidadesinstc.'</ns3:CTROtrasUniversidadesInst_c>':'').'
-                                 '.(isset($dataForm->ctrespecialidadc)?'<ns3:CTREspecialidad_c>'.$dataForm->ctrespecialidadc.'</ns3:CTREspecialidad_c>':'').'
-                                 '.(isset($dataForm->ctranomesquefinalizoestsupc)?'<ns3:CTRAnoMesquefinalizoEstSup_c>'.$dataForm->ctranomesquefinalizoestsupc.'</ns3:CTRAnoMesquefinalizoEstSup_c>':'').'
-                                 '.(isset($dataForm->ctrnivelacademicoc)?'<ns3:CTRNivelacademico_c>'.$dataForm->ctrnivelacademicoc.'</ns3:CTRNivelacademico_c>':'').'
-                                '.(isset($dataForm->persondeoctrestudiospreviosc)?'<ns3:PersonDEO_CTREstudiosPrevios_c>'.$dataForm->persondeoctrestudiospreviosc.'</ns3:PersonDEO_CTREstudiosPrevios_c>':'').'
-                                '.(isset($dataForm->persondeoctrprogramaqueestudioc)?'<ns3:PersonDEO_CTRProgramaQueEstudio_c>'.$dataForm->persondeoctrprogramaqueestudioc.'</ns3:PersonDEO_CTRProgramaQueEstudio_c>':'').'
-                            </ns1:PersonDEO_InformacionAcademicaCollection_c>';
-        }*/
-        /*
-'.(isset($dataForm->emailaddress2)?'<ns1:EmailAddress2>'.strtolower($dataForm->emailaddress2).'</ns1:EmailAddress2>':'').'
- '.(isset($dataForm->persondeoctrcorreopucpc)?'<ns1:PersonDEO_CTRCorreoPUCP_c>'.strtolower($dataForm->persondeoctrcorreopucpc).'</ns1:PersonDEO_CTRCorreoPUCP_c>':'').'
-        */
+        
         if (!empty($user->persondeoctrcompaniacempresa) and  empty($user->persondeoctrcompaniacruc)) {
             $user->persondeoctrcompaniac = $user->persondeoctrcompaniacempresa;
         } else if (empty($user->persondeoctrcompaniacempresa) and !empty($user->persondeoctrcompaniacruc)) {
