@@ -76,8 +76,8 @@ class MassiveContact
                 //OTROS PAISES
                 $request_xml .= '
                             <ns1:PrimaryAddress>
-							    '.(isset($dataForm->addresselementattribute3)?'<ns2:AddressLine3>'.$dataForm->addresselementattribute3.'</ns2:AddressLine3>':'').'
-							    '.(isset($dataForm->addresselementattribute3)?'<ns2:AddressLine2>'.$dataForm->addresselementattribute3.'</ns2:AddressLine2>':'').'
+							    '.(isset($dataForm->addresselementattribute3)?'<ns2:City>'.$dataForm->addresselementattribute3.'</ns2:City>':'').'
+							    '.(isset($dataForm->addresselementattribute2)?'<ns2:AddressLine2>'.$dataForm->addresselementattribute2.'</ns2:AddressLine2>':'').'
                                 '.(isset($dataForm->addressline1)?'<ns2:AddressLine1>'.$dataForm->addressline1.'</ns2:AddressLine1>':'').'
                                 '.(isset($dataForm->country)?'<ns2:Country>'.$dataForm->country.'</ns2:Country>':'').'
                                 '.(isset($dataForm->city)?'<ns2:City>'.$dataForm->city.'</ns2:City>':'').'
