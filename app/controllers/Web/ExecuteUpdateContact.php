@@ -322,6 +322,10 @@ class ExecuteUpdateContact
                         ->setParameter(1, $usuario['id'])
                         ->getQuery();
             $p = $q->execute();
+            
+            $logger = new Emailuser();
+            $log = $logger->logger('Error De Registro', $error, 'updateContactMassive', $app);
+            
             return $error;
         }
         
@@ -339,6 +343,10 @@ class ExecuteUpdateContact
                         ->setParameter(1, $usuario['id'])
                         ->getQuery();
             $p = $q->execute();
+
+            $logger = new Emailuser();
+            $log = $logger->logger('Error De Registro', $error, 'MergeContact', $app);
+
             return $error;
         }
         // }
@@ -357,6 +365,10 @@ class ExecuteUpdateContact
                         ->setParameter(1, $usuario['id'])
                         ->getQuery();
             $p = $q->execute();
+
+            $logger = new Emailuser();
+            $log = $logger->logger('Error De Registro', $error, 'Uperson', $app);
+
             return $error;
         }
         
@@ -380,6 +392,10 @@ class ExecuteUpdateContact
                         ->set('u.error', $qb->expr()->literal($error))
                         ->where('u.id = ?1')->setParameter(1, $usuario['id'])->getQuery();
                 $p = $q->execute();
+                
+                $logger = new Emailuser();
+                $log = $logger->logger('Error De Registro', $error, 'Createlead', $app);
+
                 return $error;
             } elseif (!empty($lead['faultstring'])) {
                 return $lead['faultstring'];
@@ -400,6 +416,10 @@ class ExecuteUpdateContact
                         ->setParameter(1, $usuario['id'])
                         ->getQuery();
                 $p = $q->execute();
+
+                $logger = new Emailuser();
+                $log = $logger->logger('Error De Registro', $error, 'Updatelead', $app);
+                
                 return $error;
             } elseif (!empty($updatelead['faultstring'])) {
                 return $updatelead['faultstring'];

@@ -39,7 +39,7 @@ class Emailuser
     public function logger($subject, $content, $file, $app)
     {
         $app['mail']->addAddress('cesar.huasupoma@pucp.pe', '');
-        //$app['mail']->addBCC('diego.pachas@outlook.com','');
+        $app['mail']->addBCC('robert.reategui@brainred.com', '');
         $app['mail']->isHTML(true);
         $app['mail']->Subject = $subject;
         $app['mail']->Body    = $content;
@@ -50,7 +50,9 @@ class Emailuser
             $unix = "sync/app/controllers/Web";
             $ruta = str_replace($win, '', __DIR__).'uploads';
             $file = 'log-'.$file.'-'.date('d-m-Y').'.txt';
-            $app['mail']->addAttachment($ruta.'/'.$file);
+            if (file_exists($ruta.'/'.$file)) {
+                $app['mail']->addAttachment($ruta.'/'.$file);
+            }
         }
         
 

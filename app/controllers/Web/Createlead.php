@@ -1,46 +1,55 @@
 <?php
 namespace Web;
+
 use Silex\Application;
 use Web\Soap;
-class Createlead{
-	var $wsLead = 'https://cang-test.crm.us2.oraclecloud.com:443/mklLeads/SalesLeadService?WSDL';
-    public function createLead($userInserted, $dataForm, $try){
-		$soap = new Soap();
-		$client = $soap->getClient($this->wsLead);
-		$soapaction = "http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/createSalesLead";
-		$request = $this->createLeadRequest($userInserted, $dataForm);
-		file_put_contents('createlead.log',$request);
-		$response = $client->send($request, $soapaction, '');
-		
-		if(!empty($response['faultstring'])){
-			file_put_contents('createlead.log',$response['faultstring'], FILE_APPEND);
-				return $response;
-		}
-			
-		if(isset($response['result'])){
-			file_put_contents('createlead.log',$response['result'], FILE_APPEND);
-			return $response['result'];
-		}
 
-		$try += 1;
-		if($try<3)
-			return $this->createLead($userInserted,$dataForm, $try);
-	}
+class Createlead
+{
+    public $wsLead = 'https://cang-test.crm.us2.oraclecloud.com:443/mklLeads/SalesLeadService?WSDL';
+    public function createLead($userInserted, $dataForm, $try)
+    {
+        $soap = new Soap();
+        $client = $soap->getClient($this->wsLead);
+        $soapaction = "http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/createSalesLead";
+        $request = $this->createLeadRequest($userInserted, $dataForm);
+        file_put_contents('createlead.log', $request);
+        $response = $client->send($request, $soapaction, '');
+        
+        if (!empty($response['faultstring'])) {
+            $savexml = new \Web\Logsrv();
+            $savexml->savelog($request, 'Createlead');
 
-	public function createLeadRequest($userInserted, $dataForm){
-		$request_otroMedio = '';
-		if(isset($dataForm->persondeoctrprocedenciac)){
-			if(!isset($dataForm->otromedio))
-				$dataForm->otromedio = '';
-			if($dataForm->persondeoctrprocedenciac==8)
-				$request_otroMedio = '<lead:CTROtroMedio_c>'.$dataForm->otromedio.'</lead:CTROtroMedio_c>';
-		}
-		$request_charla = '';
-		if(isset($dataForm->ctrfechacharlac)){
-			$request_charla = '<lead:CTRFechaCharla_c>'.$dataForm->ctrfechacharlac.'</lead:CTRFechaCharla_c>';
-		}
+            return $response;
+        }
+            
+        if (isset($response['result'])) {
+            return $response['result'];
+        }
 
-    	$request_xml = '
+        $try += 1;
+        if ($try<3) {
+            return $this->createLead($userInserted, $dataForm, $try);
+        }
+    }
+
+    public function createLeadRequest($userInserted, $dataForm)
+    {
+        $request_otroMedio = '';
+        if (isset($dataForm->persondeoctrprocedenciac)) {
+            if (!isset($dataForm->otromedio)) {
+                $dataForm->otromedio = '';
+            }
+            if ($dataForm->persondeoctrprocedenciac==8) {
+                $request_otroMedio = '<lead:CTROtroMedio_c>'.$dataForm->otromedio.'</lead:CTROtroMedio_c>';
+            }
+        }
+        $request_charla = '';
+        if (isset($dataForm->ctrfechacharlac)) {
+            $request_charla = '<lead:CTRFechaCharla_c>'.$dataForm->ctrfechacharlac.'</lead:CTRFechaCharla_c>';
+        }
+
+        $request_xml = '
     		<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
     			xmlns:typ="http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/types/"
     			xmlns:lead="http://xmlns.oracle.com/oracle/apps/marketing/leadMgmt/leads/leadService/"
@@ -69,8 +78,6 @@ class Createlead{
 				      </typ:createSalesLead>
 				   </soapenv:Body>
 			</soapenv:Envelope>';
-		return $request_xml;
-	}
-
+        return $request_xml;
+    }
 }
-?>

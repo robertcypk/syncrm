@@ -1,46 +1,58 @@
 <?php
 namespace Web;
+
 use Silex\Application;
 use Web\Soap;
-class Updatelead{
-	var $wsLead = 'https://cang-test.crm.us2.oraclecloud.com:443/mklLeads/SalesLeadService?WSDL';
-    public function updateLead($anterior, $dataForm, $try){
-		$soap = new Soap();
-		$client = $soap->getClient($this->wsLead);
-		$soapaction = "http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/updateSalesLead";
-		$request = $this->updateLeadRequest($anterior, $dataForm);
-		file_put_contents('updatelead.log',$request, FILE_APPEND);
-		$response = $client->send($request, $soapaction, '');
-		
-		if(!empty($response['faultstring'])){
-				return $response;
-		}
-		
-		
-		if(isset($response['result'])){
-			return $response['result'];
-		}
 
-		$try += 1;
-		if($try<3)
-			return $this->updateLead($anterior, $dataForm, $try);
+class Updatelead
+{
+    public $wsLead = 'https://cang-test.crm.us2.oraclecloud.com:443/mklLeads/SalesLeadService?WSDL';
+    public function updateLead($anterior, $dataForm, $try)
+    {
+        $soap = new Soap();
+        $client = $soap->getClient($this->wsLead);
+        $soapaction = "http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/updateSalesLead";
+        $request = $this->updateLeadRequest($anterior, $dataForm);
+        
+        $savexml = new \Web\Logsrv();
+        $savexml->savelog($request, 'Updatelead');
+        
+        $response = $client->send($request, $soapaction, '');
+        
 
-	}
 
-	public function updateLeadRequest($anterior, $dataForm){
-		$request_otroMedio = '';
-		if(isset($dataForm->persondeoctrprocedenciac)){
-			if(!isset($dataForm->otromedio))
-				$dataForm->otromedio = '';
-			if($dataForm->persondeoctrprocedenciac==8)
-				$request_otroMedio = '<lead:CTROtroMedio_c>'.$dataForm->otromedio.'</lead:CTROtroMedio_c>';
-		}
-		$request_charla = '';
-		if(isset($dataForm->ctrfechacharlac)){
-			$request_charla = '<lead:CTRFechaCharla_c>'.$dataForm->ctrfechacharlac.'</lead:CTRFechaCharla_c>';
-		}
+        if (!empty($response['faultstring'])) {
+            return $response;
+        }
+        
+        
+        if (isset($response['result'])) {
+            return $response['result'];
+        }
 
-		$request_xml = '
+        $try += 1;
+        if ($try<3) {
+            return $this->updateLead($anterior, $dataForm, $try);
+        }
+    }
+
+    public function updateLeadRequest($anterior, $dataForm)
+    {
+        $request_otroMedio = '';
+        if (isset($dataForm->persondeoctrprocedenciac)) {
+            if (!isset($dataForm->otromedio)) {
+                $dataForm->otromedio = '';
+            }
+            if ($dataForm->persondeoctrprocedenciac==8) {
+                $request_otroMedio = '<lead:CTROtroMedio_c>'.$dataForm->otromedio.'</lead:CTROtroMedio_c>';
+            }
+        }
+        $request_charla = '';
+        if (isset($dataForm->ctrfechacharlac)) {
+            $request_charla = '<lead:CTRFechaCharla_c>'.$dataForm->ctrfechacharlac.'</lead:CTRFechaCharla_c>';
+        }
+
+        $request_xml = '
 			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 				xmlns:typ="http://xmlns.oracle.com/apps/marketing/leadMgmt/leads/leadService/types/"
 				xmlns:lead="http://xmlns.oracle.com/oracle/apps/marketing/leadMgmt/leads/leadService/"
@@ -66,10 +78,8 @@ class Updatelead{
 					</typ:updateSalesLead>
 				</soapenv:Body>
 			</soapenv:Envelope>';
-			
-			//var_dump( $request_xml );
-			return $request_xml;
-
-	}
+            
+        //var_dump( $request_xml );
+        return $request_xml;
+    }
 }
-?>
