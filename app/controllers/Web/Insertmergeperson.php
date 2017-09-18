@@ -1,34 +1,40 @@
 <?php
 namespace Web;
+
 use Silex\Application;
 use Web\Soap;
-class Insertmergeperson{
-    public function insertmergeperson($userInserted, $dataForm, $try,$wsPerson){
-		
-		$soap = New Soap();
-		$client = $soap->getClient($wsPerson);
-		$soapaction = "http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/mergePerson";
-		$request = $this->insertMergePersonRequest($userInserted, $dataForm);
-		
-		
-		
-		$response = $client->send($request, $soapaction, '');
-		
-		if(!empty($response['result'])){
-			return $response['result']['Value'];
-		}else{
-			return $response;
-		}
 
-		$try += 1;
-		if($try<3)
-			return $this->insertmergeperson($userInserted,$dataForm, $try,$wsPerson);
-	}
+class Insertmergeperson
+{
+    public function insertmergeperson($userInserted, $dataForm, $try, $wsPerson)
+    {
+        $soap = new Soap();
+        $client = $soap->getClient($wsPerson);
+        $soapaction = "http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/mergePerson";
+        $request = $this->insertMergePersonRequest($userInserted, $dataForm);
+        
+        $savexml = new \Web\Logsrv();
+        $savexml->savelog($request, 'Insertmergeperson');
+        
+        $response = $client->send($request, $soapaction, '');
+        
+        if (!empty($response['result'])) {
+            return $response['result']['Value'];
+        } else {
+            return $response;
+        }
 
-	public function insertMergePersonRequest($userInserted, $dataForm){
-		$email_pucp = '';
-    	if( !empty($dataForm->persondeoctrcorreopucpc) ){
-    		$email_pucp .= '<per:Email>
+        $try += 1;
+        if ($try<3) {
+            return $this->insertmergeperson($userInserted, $dataForm, $try, $wsPerson);
+        }
+    }
+
+    public function insertMergePersonRequest($userInserted, $dataForm)
+    {
+        $email_pucp = '';
+        if (!empty($dataForm->persondeoctrcorreopucpc)) {
+            $email_pucp .= '<per:Email>
 					               <con:OwnerTableName>HZ_PARTIES</con:OwnerTableName>
 					               <con:OwnerTableId>'.$userInserted['PartyId'].'</con:OwnerTableId>
 					               <con:PrimaryFlag>false</con:PrimaryFlag>
@@ -37,10 +43,10 @@ class Insertmergeperson{
 					               <con:PrimaryByPurpose>N</con:PrimaryByPurpose>
 					               <con:CreatedByModule>HZ_WS</con:CreatedByModule>
 							    </per:Email>';
-		}
+        }
 
-		if( !empty($dataForm->emailaddress2) ){
-    		$email_pucp .= '<per:Email>
+        if (!empty($dataForm->emailaddress2)) {
+            $email_pucp .= '<per:Email>
 					               <con:OwnerTableName>HZ_PARTIES</con:OwnerTableName>
 					               <con:OwnerTableId>'.$userInserted['PartyId'].'</con:OwnerTableId>
 					               <con:PrimaryFlag>false</con:PrimaryFlag>
@@ -49,25 +55,25 @@ class Insertmergeperson{
 					               <con:PrimaryByPurpose>N</con:PrimaryByPurpose>
 					               <con:CreatedByModule>HZ_WS</con:CreatedByModule>
 							    </per:Email>';
-		}
-		
-		/*if(  !empty($dataForm->emailaddress) ){
-    		$email_pucp .= '<per:Email>
-					               <con:OwnerTableName>HZ_PARTIES</con:OwnerTableName>
-					               <con:OwnerTableId>'.$userInserted['PartyId'].'</con:OwnerTableId>
-					               <con:PrimaryFlag>false</con:PrimaryFlag>
-					               <con:ContactPointPurpose>BUSINESS</con:ContactPointPurpose>
-					               <con:EmailAddress>'.$dataForm->emailaddress.'</con:EmailAddress>
-					               <con:PrimaryByPurpose>N</con:PrimaryByPurpose>
-					               <con:CreatedByModule>HZ_WS</con:CreatedByModule>
-							    </per:Email>';
-		}*/
-		
-		if(empty($email_pucp)){ 
-			return ''; 
-		}
-		
-		$request_xml ='
+        }
+        
+        /*if(  !empty($dataForm->emailaddress) ){
+            $email_pucp .= '<per:Email>
+                                   <con:OwnerTableName>HZ_PARTIES</con:OwnerTableName>
+                                   <con:OwnerTableId>'.$userInserted['PartyId'].'</con:OwnerTableId>
+                                   <con:PrimaryFlag>false</con:PrimaryFlag>
+                                   <con:ContactPointPurpose>BUSINESS</con:ContactPointPurpose>
+                                   <con:EmailAddress>'.$dataForm->emailaddress.'</con:EmailAddress>
+                                   <con:PrimaryByPurpose>N</con:PrimaryByPurpose>
+                                   <con:CreatedByModule>HZ_WS</con:CreatedByModule>
+                                </per:Email>';
+        }*/
+        
+        if (empty($email_pucp)) {
+            return '';
+        }
+        
+        $request_xml ='
 			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 				xmlns:typ="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/types/"
 				xmlns:per="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/"
@@ -90,7 +96,6 @@ class Insertmergeperson{
 					</typ:mergePerson>
 				</soapenv:Body>
 			</soapenv:Envelope>';
-		return $request_xml;
-	}
+        return $request_xml;
+    }
 }
-?>

@@ -1,36 +1,44 @@
 <?php
 namespace Web;
-use Web\Soap;
-//use Web\Person;
-class Updatepersonemail{
-    	public function updatePersonEmail($userInserted, $try, $wsPerson){
-		$person = New \Web\Person;
-		$emails = $person->getPerson($userInserted, 1);
-		if(!empty($emails)){
-			$soap = new Soap();
-			$client = $soap->getClient($wsPerson);
-			$soapaction = "http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/updatePerson";
-			$request = $this->updatePersonEmailRequest($userInserted, $emails);
-			
-			//$response['xml'] = $request;
-			
-			$response = $client->send($request, $soapaction, '');
-			
-			if(isset($response['result'])){
-				return $response['result']['Value'];
-			}else{
-				$response['PrimaryEmailContactPTId'] = $emails["PrimaryEmailContactPTId"];
-				$response['PartyId'] = $userInserted['PartyId'];
-				return $response;
-			}	
-			$try += 1;
-			if($try<3)
-				return $this->updatePersonEmail($userInserted, $try, $wsPerson);
-		}
-	}
 
-	public function updatePersonEmailRequest($userInserted, $emails){
-		$request_xml ='
+use Web\Soap;
+
+//use Web\Person;
+class Updatepersonemail
+{
+    public function updatePersonEmail($userInserted, $try, $wsPerson)
+    {
+        $person = new \Web\Person;
+        $emails = $person->getPerson($userInserted, 1);
+        if (!empty($emails)) {
+            $soap = new Soap();
+            $client = $soap->getClient($wsPerson);
+            $soapaction = "http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/updatePerson";
+            $request = $this->updatePersonEmailRequest($userInserted, $emails);
+            
+            //$response['xml'] = $request;
+            $savexml = new \Web\Logsrv();
+            $savexml->savelog($request, 'Updatepersonemail');
+            
+            $response = $client->send($request, $soapaction, '');
+            
+            if (isset($response['result'])) {
+                return $response['result']['Value'];
+            } else {
+                $response['PrimaryEmailContactPTId'] = $emails["PrimaryEmailContactPTId"];
+                $response['PartyId'] = $userInserted['PartyId'];
+                return $response;
+            }
+            $try += 1;
+            if ($try<3) {
+                return $this->updatePersonEmail($userInserted, $try, $wsPerson);
+            }
+        }
+    }
+
+    public function updatePersonEmailRequest($userInserted, $emails)
+    {
+        $request_xml ='
 			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 				xmlns:typ="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/applicationModule/types/"
 				xmlns:per="http://xmlns.oracle.com/apps/cdm/foundation/parties/personService/"
@@ -58,7 +66,6 @@ class Updatepersonemail{
 				</soapenv:Body>
 			</soapenv:Envelope>';
 
-		return $request_xml;
-	}
+        return $request_xml;
+    }
 }
-?>
