@@ -106,7 +106,7 @@ class ExecuteUpdateContact
                         $logger = new Emailuser();
                         $log = $logger->logger('Error De Registro', $error, 'checkContact-request', $app);
                                         
-                        return 0;
+                        return 1;
                     } else { // tabla sailor
                         /**/
                         $checkemail = $app["orm.em"]->getRepository('Entity\Campo_crm')->findOneBy(array('user_id'=> $loguser->getUserid(),'campo' => 'email_final'));
@@ -186,7 +186,7 @@ class ExecuteUpdateContact
                             $logger = new Emailuser();
                             $log = $logger->logger('Error De Registro', $error, 'checkContact-request', $app);
                                         
-                            return 0;
+                            return 1;
                         }
                     }
                                 
@@ -220,7 +220,7 @@ class ExecuteUpdateContact
                             $logger = new Emailuser();
                             $log = $logger->logger('Error De Registro', $error, 'checkContact-request', $app);
 
-                            return 0;
+                            return 1;
                         } else { // tabla sailor
                                         
                             /**/
