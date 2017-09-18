@@ -1,58 +1,68 @@
 <?php
 namespace Web;
+
 use Silex\Application;
 use Web\Soap;
 use Web\Emailuser;
-class Checkcontact{
-	var $wsContacto = 'https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL';
-    public function checkContactf($dataForm, $try, $usuario,$app){
-        $soap = new Soap();
-		$client = $soap->getClient($this->wsContacto);
-		//Persondeo_ctrnrodedocumento_c
-		$soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/findContact";
-		if(isset($dataForm->persondeoctrnrodedocumentoc)){
-			$request = $this->getContactRequest($dataForm);
-			$response = $client->send($request, $soapaction, '');
-			
-			if(!empty($response['faultstring'])){
-				return $response['faultstring'];
-			}
-			
-			if(isset($response['result'])){
-				if(isset($response['result']['Value'])){
-					if(isset($response['result']['Value']['PartyId'])){
-						
-						//$logger = new Emailuser();
-						//$log = $logger->logger('checkContact',json_encode($response['result']['Value']),$app);
-						$savexml = new \Web\Logsrv();
-        				$savexml->savelog($response['result'],'checkContact');
 
-						return $response['result']['Value'];
-					}else{
-						//DB::table('usuario_crm')->where('id','=',$usuario)->update(array('dupli'=>'1'));
+class Checkcontact
+{
+    public $wsContacto = 'https://cang-test.crm.us2.oraclecloud.com:443/crmCommonSalesParties/ContactService?WSDL';
+    public function checkContactf($dataForm, $try, $usuario, $app)
+    {
+        $soap = new Soap();
+        $client = $soap->getClient($this->wsContacto);
+        //Persondeo_ctrnrodedocumento_c
+        $soapaction = "http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/findContact";
+        if (isset($dataForm->persondeoctrnrodedocumentoc)) {
+            $request = $this->getContactRequest($dataForm);
+            
+            $savexml = new \Web\Logsrv();
+            $savexml->savelog($request, 'checkContact-request');
+
+            $response = $client->send($request, $soapaction, '');
+            
+            if (!empty($response['faultstring'])) {
+                return $response['faultstring'];
+            }
+            
+            if (isset($response['result'])) {
+                if (isset($response['result']['Value'])) {
+                    if (isset($response['result']['Value']['PartyId'])) {
+                        $savexml = new \Web\Logsrv();
+                        $savexml->savelog($response['result'], 'checkContact');
+
+                        return $response['result']['Value'];
+                    } else {
+                        //DB::table('usuario_crm')->where('id','=',$usuario)->update(array('dupli'=>'1'));
                         $qb = $app['orm.em']->createQueryBuilder();
                         $q = $qb->update('Entity\Usuario_crm', 'u')
-                                ->set('u.dupli', $qb->expr()->literal( 1 ) )
+                                ->set('u.dupli', $qb->expr()->literal(1))
                                 ->where('u.id = ?1')
                                 ->setParameter(1, $usuario['id'])
                                 ->getQuery();
                         $p = $q->execute();
+                        
+                        //$logger = new Emailuser();
+                        //$log = $logger->logger('checkContact', json_encode($response['result']['Value']), $app);
+                        
 
-						return $response['result']['Value'][count($response['result']['Value'])-1];
-					}
-				}else{
-					return false;
-				}
-
-			}
-			$try += 1;
-			if($try<3)
-				return $this->checkContactf($dataForm, $try,$usuario,$app,$wsContacto);
-		}
-	}
-    public function getContactRequest($dataForm){
+                        return $response['result']['Value'][count($response['result']['Value'])-1];
+                    }
+                } else {
+                    return false;
+                }
+            }
+            $try += 1;
+            if ($try<3) {
+                return $this->checkContactf($dataForm, $try, $usuario, $app, $wsContacto);
+            }
+        }
+    }
+    public function getContactRequest($dataForm)
+    {
         //Persondeo_ctrnrodedocumento_c
-		$request_xml ='
+        $request_xml ='
 			<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
 				xmlns:typ="http://xmlns.oracle.com/apps/crmCommon/salesParties/contactService/types/"
 				xmlns:typ1="http://xmlns.oracle.com/adf/svc/types/">
@@ -84,7 +94,6 @@ class Checkcontact{
 					</typ:findContact>
 				</soapenv:Body>
 			</soapenv:Envelope>';
-		return $request_xml;
-	}
+        return $request_xml;
+    }
 }
-?>
